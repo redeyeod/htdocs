@@ -33,7 +33,7 @@
     <!-- ================= HEADER (Wird geladen) ================= -->
     <div id="header-placeholder"></div>
 
-    <!-- ================= HERO BEREICH (Kompakter für Unterseiten) ================= -->
+    <!-- ================= HERO BEREICH ================= -->
     <section class="pt-40 pb-20 bg-gradient-to-b from-blue-100 to-white relative overflow-hidden">
         <div class="container mx-auto px-6 text-center relative z-10">
             <h1 class="text-4xl md:text-6xl font-black text-club mb-4 uppercase tracking-tight">Unsere Gruppen</h1>
@@ -60,7 +60,8 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Card 1: Storchengarde -->
                 <div onclick="openGroupModal('storchengarde')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/storchengarde.png" onerror="this.src='https://images.unsplash.com/photo-1504609813442-a8924e83f76e?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <!-- Bild optimiert: w=600 statt w=2670 -->
+                    <img src="../images/storchengarde.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504609813442-a8924e83f76e?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Storchengarde</h3>
@@ -71,7 +72,7 @@
 
                 <!-- Card 2: Jugendgarde -->
                 <div onclick="openGroupModal('jugendgarde')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/jugendgarde.png" onerror="this.src='https://images.unsplash.com/photo-1535525153412-5a42439a210d?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/jugendgarde.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1535525153412-5a42439a210d?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Jugendgarde</h3>
@@ -82,7 +83,7 @@
 
                 <!-- Card 3: Kindergarde -->
                 <div onclick="openGroupModal('kindergarde')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/kindergarde.png" onerror="this.src='https://images.unsplash.com/photo-1621976498727-9e5909348d47?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/kindergarde.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1621976498727-9e5909348d47?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Kindergarde</h3>
@@ -93,7 +94,7 @@
 
                 <!-- Card 4: Narrensamen -->
                 <div onclick="openGroupModal('narrensamen')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/narrensamen.png" onerror="this.src='https://images.unsplash.com/photo-1602660724625-27a3c3070494?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/narrensamen.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1602660724625-27a3c3070494?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Narrensamen</h3>
@@ -104,7 +105,7 @@
 
                 <!-- Card 5: Storchenküken -->
                 <div onclick="openGroupModal('storchenkeuken')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/storchenkueken.png" onerror="this.src='https://images.unsplash.com/photo-1516475429286-465d815a0df7?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/storchenkueken.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516475429286-465d815a0df7?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Storchenküken</h3>
@@ -115,7 +116,7 @@
 
                 <!-- Card 6: Männerballett -->
                 <div onclick="openGroupModal('maennerballett')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/maennerballett.png" onerror="this.src='https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=2574&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/maennerballett.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Männerballett</h3>
@@ -126,7 +127,7 @@
 
                 <!-- Card 7: Old-Stars -->
                 <div onclick="openGroupModal('oldstars')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/oldstars.png" onerror="this.src='https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/oldstars.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Old-Stars</h3>
@@ -137,7 +138,7 @@
 
                 <!-- Card 8: Fahnenschwinger -->
                 <div onclick="openGroupModal('fahnenschwinger')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-                    <img src="../images/fahnenschwinger.png" onerror="this.src='https://images.unsplash.com/photo-1563811693-4e63773ba9d4?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <img src="../images/fahnenschwinger.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1563811693-4e63773ba9d4?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
                     <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Fahnenschwinger</h3>
@@ -161,7 +162,7 @@
                 <!-- Bollehohlchor -->
                 <div onclick="openGroupModal('bollehohlchor')" class="bg-white rounded-2xl p-8 flex items-center gap-6 hover:shadow-xl transition border border-gray-100 group cursor-pointer hover:border-l-4 hover:border-club">
                     <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm flex-shrink-0 group-hover:scale-105 transition">
-                        <img src="../images/bollehohlchor.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075908.png'" class="w-full h-full object-cover">
+                        <img src="../images/bollehohlchor.png" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3075/3075908.png'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Bollehohlchor</h3>
@@ -173,7 +174,7 @@
                 <!-- Büttenredner -->
                 <div onclick="openGroupModal('buettenredner')" class="bg-white rounded-2xl p-8 flex items-center gap-6 hover:shadow-xl transition border border-gray-100 group cursor-pointer hover:border-l-4 hover:border-club">
                     <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm flex-shrink-0 group-hover:scale-105 transition">
-                        <img src="../images/buettenredner.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2983/2983754.png'" class="w-full h-full object-cover">
+                        <img src="../images/buettenredner.png" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/2983/2983754.png'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Büttenredner</h3>
@@ -187,7 +188,8 @@
 
     <!-- ================= 3. LAUFGRUPPEN ================= -->
     <section class="py-20 bg-club text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        <!-- Externes Muster entfernt, um Ladezeit zu sparen. Stattdessen einfache Deckkraft. -->
+        <div class="absolute inset-0 bg-white/5 pointer-events-none"></div>
         <div class="container mx-auto px-6 relative z-10">
             <h2 class="text-3xl font-black mb-12 text-center">Unsere Laufgruppen</h2>
             
@@ -195,7 +197,7 @@
                 <!-- Dominos -->
                 <div onclick="openGroupModal('dominos')" class="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex items-center gap-6 hover:bg-white/20 transition duration-300 cursor-pointer group border border-white/10">
                     <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/20 flex-shrink-0 group-hover:scale-105 transition">
-                        <img src="../images/maelscherdominos.png" onerror="this.src='https://images.unsplash.com/photo-1533552097072-628dc0716618?q=80&w=2574&auto=format&fit=crop'" class="w-full h-full object-cover">
+                        <img src="../images/maelscherdominos.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533552097072-628dc0716618?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2">Mälscher Dominos</h3>
@@ -207,7 +209,7 @@
                 <!-- Nachtkrabb -->
                 <div onclick="openGroupModal('nachtkrabb')" class="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex items-center gap-6 hover:bg-white/20 transition duration-300 cursor-pointer group border border-white/10">
                     <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/20 flex-shrink-0 group-hover:scale-105 transition">
-                        <img src="../images/maelschernachtkrabb.png" onerror="this.src='https://images.unsplash.com/photo-1509347528160-9a9e33742cd4?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover">
+                        <img src="../images/maelschernachtkrabb.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1509347528160-9a9e33742cd4?q=80&w=600&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2">Mälscher Nachtkrabb</h3>
@@ -265,7 +267,7 @@
                 <!-- Sitzungspräsident -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-md group-hover:border-clubaccent transition">
-                        <img src="../images/sitzungspraesident.png" onerror="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop'" class="w-full h-full object-cover">
+                        <img src="../images/sitzungspraesident.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-xl font-bold text-gray-800">Sitzungspräsident</h3>
                     <p class="text-club font-medium mt-1">Alexander K.</p>
@@ -275,7 +277,7 @@
                 <!-- Hofmarschall -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-md group-hover:border-clubaccent transition">
-                        <img src="../images/hofmarschall.png" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop'" class="w-full h-full object-cover">
+                        <img src="../images/hofmarschall.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-xl font-bold text-gray-800">Hofmarschall</h3>
                     <p class="text-club font-medium mt-1">Die rechte Hand</p>
@@ -285,7 +287,7 @@
                 <!-- Mundschenk -->
                 <div class="bg-gray-50 p-6 rounded-xl shadow text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white shadow-md group-hover:border-clubaccent transition">
-                        <img src="../images/mundschenk.png" onerror="this.src='https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=2669&auto=format&fit=crop'" class="w-full h-full object-cover">
+                        <img src="../images/mundschenk.png" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=400&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <h3 class="text-xl font-bold text-gray-800">Mundschenk</h3>
                     <p class="text-club font-medium mt-1">Für das Wohl</p>
@@ -380,7 +382,7 @@
             'nachtkrabb': { title: 'Mälscher Nachtkrabb', subtitle: 'Laufgruppe', img: '../images/maelschernachtkrabb.png', desc: 'Die mystische Seite der Fasnacht. Mit ihren handgefertigten Masken sorgen sie für Staunen.', betreuer: 'Bernd Lehmann', trainer: '-', contact: 'nachtkrabb@grokage-malsch.de' },
             'bollehohlchor': { title: 'Bollehohlchor', subtitle: 'Gesang & Stimmung', img: '../images/bollehohlchor.png', desc: 'Lokalkolorit und Stimmungslieder sind ihr Metier. Der Chor sorgt live für beste Unterhaltung.', betreuer: 'Dirk Sommer', trainer: 'Musikalischer Leiter: Hans Durst', contact: 'chor@grokage-malsch.de' },
             'buettenredner': { title: 'Büttenredner', subtitle: 'Wortakrobaten', img: '../images/buettenredner.png', desc: 'Ob politisch oder gesellschaftskritisch, unsere Redner nehmen kein Blatt vor den Mund.', betreuer: 'Sitzungspräsident', trainer: '-', contact: 'info@grokage-malsch.de' },
-            'elferrat': { title: 'Elferrat', subtitle: 'Das Parlament', img: '../images/elferrat.png', desc: 'Das organisatorische Rückgrat der Sitzungen.', betreuer: 'Sitzungspräsident', trainer: '-', contact: 'elferrat@grokage-malsch.de' },
+            'elferrat': { title: 'Elferrat', subtitle: 'Das Parlament', img: '../images/elferrat.png', desc: 'Das organisatorische Rückgrat der Sitzungen.', betreuer: 'Präsident', trainer: '-', contact: 'elferrat@grokage-malsch.de' },
             'dekoteam': { title: 'Dekoteam', subtitle: 'Kreativabteilung', img: '../images/dekoteam.png', desc: 'Sie verwandeln Hallen in Narrentempel.', betreuer: 'Kreativ-Leitung', trainer: '-', contact: 'deko@grokage-malsch.de' },
             'dekoordenteam': { title: 'Dekoordenteam', subtitle: 'Die Bastler', img: '../images/dekoordenteam.png', desc: 'Zuständig für die Orden und Auszeichnungen.', betreuer: 'Ordensmeister', trainer: '-', contact: 'orden@grokage-malsch.de' },
             'technikteam': { title: 'Technikteam', subtitle: 'Licht & Ton', img: '../images/technikteam.png', desc: 'Sorgen für den guten Ton und das rechte Licht.', betreuer: 'Technik-Chef', trainer: '-', contact: 'technik@grokage-malsch.de' },
@@ -403,7 +405,7 @@
             document.getElementById('modal-trainer').textContent = data.trainer;
             
             const imgEl = document.getElementById('modal-img');
-            imgEl.src = data.img || 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=2670&auto=format&fit=crop';
+            imgEl.src = data.img || 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=600&auto=format&fit=crop';
             
             const contactLink = document.getElementById('modal-contact');
             contactLink.textContent = data.contact;
