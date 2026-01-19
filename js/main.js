@@ -1,22 +1,53 @@
 /**
  * Hauptlogik für die GroKaGe Malsch Webseite
+ * Lädt Header/Footer nach und initialisiert Funktionen
  */
 
 document.addEventListener("DOMContentLoaded", function() {
-    setupMobileMenu();
-    setupScrollEffect();
+    
+    // 1. Header laden
+    loadComponent('header-placeholder', 'header.html', () => {
+        // Callback: Wird erst ausgeführt, wenn der Header fertig geladen ist
+        console.log("Header geladen!");
+        setupMobileMenu();
+        setupScrollEffect();
+    });
+
+    // 2. Footer laden
+    loadComponent('footer-placeholder', 'footer.html');
+
+    // 3. Slider direkt starten (da er schon im Main-Content der index.html ist)
     initSlider();
 });
+
+// --- HELFER: Komponente (HTML-Datei) laden ---
+async function loadComponent(elementId, filePath, callback) {
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`Fehler beim Laden von ${filePath}: ${response.status}`);
+        const text = await response.text();
+        
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = text;
+            if (callback) callback();
+        } else {
+            console.error(`Platzhalter-Element mit ID '${elementId}' nicht gefunden.`);
+        }
+    } catch (error) {
+        console.error("Fehler beim Laden der Komponente:", error);
+    }
+}
 
 // --- 1. TOGGLE EVENT DETAILS (Termine aufklappen) ---
 function toggleEvent(detailsId, iconId) {
     const details = document.getElementById(detailsId);
     const icon = document.getElementById(iconId);
     
-    if (details.classList.contains('hidden')) {
+    if (details && details.classList.contains('hidden')) {
         details.classList.remove('hidden');
         if(icon) icon.style.transform = 'rotate(180deg)';
-    } else {
+    } else if (details) {
         details.classList.add('hidden');
         if(icon) icon.style.transform = 'rotate(0deg)';
     }
@@ -72,19 +103,20 @@ function setupMobileMenu() {
 }
 
 // --- 4. HEADER SCROLL EFFEKT ---
-// WICHTIG: Farben werden jetzt komplett über style.css gesteuert!
 function setupScrollEffect() {
     const navbar = document.getElementById('navbar');
+    
     if(navbar) {
-        window.addEventListener('scroll', () => {
+        const updateHeader = () => {
             if (window.scrollY > 50) {
                 navbar.classList.add('nav-scrolled');
-                navbar.classList.remove('py-6'); // Optional: macht es kompakter
             } else {
                 navbar.classList.remove('nav-scrolled');
-                navbar.classList.add('py-6');
             }
-        });
+        };
+
+        window.addEventListener('scroll', updateHeader);
+        updateHeader(); // Check beim Laden
     }
 }
 
