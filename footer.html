@@ -12,3 +12,69 @@
         </div>
     </div>
 </footer>
+
+<!-- ================= ZENTRALES GRUPPEN-MODAL ================= -->
+<!-- Dieses HTML ist jetzt überall verfügbar, wo der Footer geladen wird -->
+<div id="group-modal" class="fixed inset-0 z-[100] hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeGroupModal()"></div>
+    
+    <!-- Modal Content -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-95 opacity-0" id="group-modal-content">
+            
+            <button onclick="closeGroupModal()" class="absolute top-4 right-4 bg-white/20 hover:bg-white text-white rounded-full w-8 h-8 flex items-center justify-center transition z-20 cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="h-48 bg-gray-200 relative">
+                <img id="modal-img" src="" alt="Gruppenbild" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-club to-transparent opacity-90"></div>
+                <div class="absolute bottom-0 left-0 p-6 text-white">
+                    <h3 id="modal-title" class="text-2xl font-black mb-1">Gruppenname</h3>
+                    <p id="modal-subtitle" class="text-blue-200 text-sm">Untertitel</p>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed">Beschreibung...</p>
+                
+                <div class="space-y-4 border-t border-gray-100 pt-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-club shrink-0">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Gruppenbetreuer</h4>
+                            <p id="modal-betreuer" class="text-sm text-gray-600">Namen...</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-clubaccent shrink-0">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Trainer</h4>
+                            <p id="modal-trainer" class="text-sm text-gray-600">Namen...</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 shrink-0">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Kontakt</h4>
+                            <a id="modal-contact" href="#" class="text-sm text-club hover:underline">E-Mail...</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="closeGroupModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 rounded-lg transition">Schließen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
