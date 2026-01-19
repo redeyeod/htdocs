@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-    <!-- Dein Style -->
+    <!-- Dein Style (relative Pfade) -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
@@ -33,7 +33,7 @@
     <!-- ================= HEADER (Wird geladen) ================= -->
     <div id="header-placeholder"></div>
 
-    <!-- ================= HERO BEREICH ================= -->
+    <!-- ================= HERO BEREICH (Kompakter für Unterseiten) ================= -->
     <section class="pt-40 pb-20 bg-gradient-to-b from-blue-100 to-white relative overflow-hidden">
         <div class="container mx-auto px-6 text-center relative z-10">
             <h1 class="text-4xl md:text-6xl font-black text-club mb-4 uppercase tracking-tight">Unsere Gruppen</h1>
@@ -351,141 +351,11 @@
     <!-- ================= FOOTER (Wird geladen) ================= -->
     <div id="footer-placeholder"></div>
 
-    <!-- ================= GRUPPEN-MODAL ================= -->
-    <div id="group-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeGroupModal()"></div>
-        
-        <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-95 opacity-0" id="group-modal-content">
-                
-                <button onclick="closeGroupModal()" class="absolute top-4 right-4 bg-white/20 hover:bg-white text-white rounded-full w-8 h-8 flex items-center justify-center transition z-20">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-
-                <div class="h-48 bg-gray-200 relative">
-                    <img id="modal-img" src="" alt="Gruppenbild" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-club to-transparent opacity-90"></div>
-                    <div class="absolute bottom-0 left-0 p-6 text-white">
-                        <h3 id="modal-title" class="text-2xl font-black mb-1">Gruppenname</h3>
-                        <p id="modal-subtitle" class="text-blue-200 text-sm">Untertitel</p>
-                    </div>
-                </div>
-
-                <div class="p-6 space-y-6">
-                    <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed">Beschreibung...</p>
-                    
-                    <div class="space-y-4 border-t border-gray-100 pt-4">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-club shrink-0">
-                                <i class="fa-solid fa-user-group"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Gruppenbetreuer</h4>
-                                <p id="modal-betreuer" class="text-sm text-gray-600">Namen...</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-clubaccent shrink-0">
-                                <i class="fa-solid fa-person-chalkboard"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Trainer</h4>
-                                <p id="modal-trainer" class="text-sm text-gray-600">Namen...</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 shrink-0">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 text-sm">Kontakt</h4>
-                                <a id="modal-contact" href="#" class="text-sm text-club hover:underline">E-Mail...</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-2">
-                        <button onclick="closeGroupModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-3 rounded-lg transition">Schließen</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Script für Modal-Logik & Daten -->
+    <!-- Script -->
     <script>
-        // 1. BasePath setzen (WICHTIG für Unterordner!)
+        // Sagt dem Script, dass wir in einem Unterordner sind
         window.basePath = '../'; 
-
-        // 2. Daten für Modal
-        const groupsData = {
-            'storchengarde': { title: 'Storchengarde', subtitle: 'Das Aushängeschild', img: '../images/storchengarde.png', desc: 'Unsere Storchengarde repräsentiert den Verein auf zahlreichen Turnieren und Veranstaltungen. Mit Disziplin und Leidenschaft trainieren sie das ganze Jahr für den perfekten Marsch.', betreuer: 'Anna Müller, Lisa Schmidt', trainer: 'Julia Wagner', contact: 'storchengarde@grokage-malsch.de' },
-            'jugendgarde': { title: 'Jugendgarde', subtitle: 'Die Nachwuchstalente', img: '../images/jugendgarde.png', desc: 'In der Jugendgarde werden die Schritte anspruchsvoller. Hier wachsen die Talente von morgen heran und begeistern mit ihrem Können.', betreuer: 'Sarah Weber', trainer: 'Marie Klein', contact: 'jugendgarde@grokage-malsch.de' },
-            'kindergarde': { title: 'Kindergarde', subtitle: 'Mit Spaß dabei', img: '../images/kindergarde.png', desc: 'Für unsere Kindergarde steht der Spaß am Tanzen im Vordergrund. Spielerisch werden erste Marschschritte und Formationen gelernt.', betreuer: 'Tanja Richter', trainer: 'Vanessa Wolf', contact: 'kindergarde@grokage-malsch.de' },
-            'narrensamen': { title: 'Narrensamen', subtitle: 'Die aller Kleinsten', img: '../images/narrensamen.png', desc: 'Unsere jüngsten Aktiven auf der Bühne. Mit viel Freude und Eifer zeigen sie ihren ersten Showtanz.', betreuer: 'Sabine Neumann', trainer: 'Lara Schwarz', contact: 'narrensamen@grokage-malsch.de' },
-            'storchenkeuken': { title: 'Storchenküken', subtitle: 'Unsere Jüngsten', img: '../images/storchenkueken.png', desc: 'Die Vorstufe zur Garde. Hier werden spielerisch Rhythmusgefühl und Bewegung zur Musik gefördert.', betreuer: 'Jessica Zimmermann', trainer: 'Nina Krüger', contact: 'kueken@grokage-malsch.de' },
-            'maennerballett': { title: 'Männerballett', subtitle: 'Anmut & Eleganz', img: '../images/maennerballett.png', desc: 'Wenn diese Herren die Bühne betreten, bleibt kein Auge trocken. Akrobatik, Humor und eine Prise Selbstironie.', betreuer: 'Markus Braun', trainer: 'Stefanie Hofmann', contact: 'maennerballett@grokage-malsch.de' },
-            'oldstars': { title: 'Old-Stars', subtitle: 'Erfahrung trifft Rhythmus', img: '../images/oldstars.png', desc: 'Ehemalige Gardetänzerinnen und tanzbegeisterte Damen, die es noch einmal wissen wollen. Showtanz vom Feinsten.', betreuer: 'Monika Schmitt', trainer: 'Sandra Lange', contact: 'oldstars@grokage-malsch.de' },
-            'fahnenschwinger': { title: 'Fahnenschwinger', subtitle: 'Tradition in Bewegung', img: '../images/fahnenschwinger.png', desc: 'Mit Präzision und Kraft lassen sie die Fahnen der GroKaGe fliegen. Ein optisches Highlight bei jedem Einmarsch.', betreuer: 'Peter Werner', trainer: 'Klaus Krause', contact: 'fahnen@grokage-malsch.de' },
-            'dominos': { title: 'Mälscher Dominos', subtitle: 'Laufgruppe', img: '../images/maelscherdominos.png', desc: 'Eine feste Größe im Mälscher Fasching. Mit ihren kreativen Kostümen bereichern sie jeden Umzug.', betreuer: 'Familie Meier', trainer: '-', contact: 'dominos@grokage-malsch.de' },
-            'nachtkrabb': { title: 'Mälscher Nachtkrabb', subtitle: 'Laufgruppe', img: '../images/maelschernachtkrabb.png', desc: 'Die mystische Seite der Fasnacht. Mit ihren handgefertigten Masken sorgen sie für Staunen.', betreuer: 'Bernd Lehmann', trainer: '-', contact: 'nachtkrabb@grokage-malsch.de' },
-            'bollehohlchor': { title: 'Bollehohlchor', subtitle: 'Gesang & Stimmung', img: '../images/bollehohlchor.png', desc: 'Lokalkolorit und Stimmungslieder sind ihr Metier. Der Chor sorgt live für beste Unterhaltung.', betreuer: 'Dirk Sommer', trainer: 'Musikalischer Leiter: Hans Durst', contact: 'chor@grokage-malsch.de' },
-            'buettenredner': { title: 'Büttenredner', subtitle: 'Wortakrobaten', img: '../images/buettenredner.png', desc: 'Ob politisch oder gesellschaftskritisch, unsere Redner nehmen kein Blatt vor den Mund.', betreuer: 'Sitzungspräsident', trainer: '-', contact: 'info@grokage-malsch.de' },
-            'elferrat': { title: 'Elferrat', subtitle: 'Das Parlament', img: '../images/elferrat.png', desc: 'Das organisatorische Rückgrat der Sitzungen.', betreuer: 'Präsident', trainer: '-', contact: 'elferrat@grokage-malsch.de' },
-            'dekoteam': { title: 'Dekoteam', subtitle: 'Kreativabteilung', img: '../images/dekoteam.png', desc: 'Sie verwandeln Hallen in Narrentempel.', betreuer: 'Kreativ-Leitung', trainer: '-', contact: 'deko@grokage-malsch.de' },
-            'dekoordenteam': { title: 'Dekoordenteam', subtitle: 'Die Bastler', img: '../images/dekoordenteam.png', desc: 'Zuständig für die Orden und Auszeichnungen.', betreuer: 'Ordensmeister', trainer: '-', contact: 'orden@grokage-malsch.de' },
-            'technikteam': { title: 'Technikteam', subtitle: 'Licht & Ton', img: '../images/technikteam.png', desc: 'Sorgen für den guten Ton und das rechte Licht.', betreuer: 'Technik-Chef', trainer: '-', contact: 'technik@grokage-malsch.de' },
-            'buehnenbau': { title: 'Bühnenbauteam', subtitle: 'Die Handwerker', img: '../images/buehnenbauteam.png', desc: 'Bauen die Kulissen für unsere Shows.', betreuer: 'Bauleiter', trainer: '-', contact: 'bau@grokage-malsch.de' },
-            'socialmedia': { title: 'Social Media Team', subtitle: 'Online Präsenz', img: '../images/socialmediateam.png', desc: 'Halten euch auf Facebook und Instagram auf dem Laufenden.', betreuer: 'Pressewart', trainer: '-', contact: 'social@grokage-malsch.de' },
-            'kuechenteam': { title: 'Küchenteam', subtitle: 'Verpflegung', img: '../images/kuechenteam.png', desc: 'Sorgen dafür, dass niemand hungrig bleibt.', betreuer: 'Küchenchef', trainer: '-', contact: 'kueche@grokage-malsch.de' }
-        };
-
-        function openGroupModal(groupId) {
-            const modal = document.getElementById('group-modal');
-            const content = document.getElementById('group-modal-content');
-            const data = groupsData[groupId];
-
-            if(!data) return;
-
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-subtitle').textContent = data.subtitle;
-            document.getElementById('modal-desc').textContent = data.desc;
-            document.getElementById('modal-betreuer').textContent = data.betreuer;
-            document.getElementById('modal-trainer').textContent = data.trainer;
-            
-            const imgEl = document.getElementById('modal-img');
-            imgEl.src = data.img || 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=2670&auto=format&fit=crop';
-            
-            const contactLink = document.getElementById('modal-contact');
-            contactLink.textContent = data.contact;
-            contactLink.href = 'mailto:' + data.contact;
-
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-
-            setTimeout(() => {
-                content.classList.remove('scale-95', 'opacity-0');
-                content.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
-
-        function closeGroupModal() {
-            const modal = document.getElementById('group-modal');
-            const content = document.getElementById('group-modal-content');
-
-            content.classList.remove('scale-100', 'opacity-100');
-            content.classList.add('scale-95', 'opacity-0');
-
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        }
     </script>
-
-    <!-- 3. Main Script laden (steuert Header/Footer Load) -->
     <script src="../js/main.js"></script>
 </body>
 </html>
