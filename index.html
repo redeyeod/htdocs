@@ -30,7 +30,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <!-- ================= HEADER / NAVIGATION (Wird geladen) ================= -->
+    <!-- ================= HEADER (Wird nachgeladen) ================= -->
     <div id="header-placeholder"></div>
 
     <!-- ================= HERO SECTION ================= -->
@@ -90,29 +90,21 @@
 
     <!-- ================= PRINZENPAAR ================= -->
     <section class="py-24 bg-gradient-to-br from-white to-blue-50 relative overflow-hidden">
-        <!-- Dekoratives Element -->
         <div class="absolute top-0 left-0 w-64 h-64 bg-clubaccent/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-                
-                <!-- Bild Bereich -->
                 <div class="w-full md:w-1/2 relative group">
                     <div class="absolute inset-0 bg-clubaccent rounded-2xl transform rotate-3 scale-[1.02] opacity-20 group-hover:rotate-6 transition duration-500"></div>
                     <div class="absolute inset-0 bg-club rounded-2xl transform -rotate-2 scale-[1.02] opacity-20 group-hover:-rotate-4 transition duration-500"></div>
-                    
                     <img src="images/prinzenpaar_2526.png" 
                          onerror="this.src='https://images.unsplash.com/photo-1562512684-2e23296860ec?q=80&w=2670&auto=format&fit=crop'" 
                          alt="Prinzenpaar 25/26" 
                          class="relative rounded-2xl shadow-2xl w-full h-auto object-cover aspect-[4/5] md:aspect-[3/4] z-10">
-                    
                     <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-xl border-l-4 border-clubaccent z-20">
                         <span class="block text-sm text-gray-500 font-bold uppercase tracking-wider">Kampagne</span>
                         <span class="block text-2xl font-black text-club">25/26</span>
                     </div>
                 </div>
-
-                <!-- Text Bereich -->
                 <div class="w-full md:w-1/2 text-center md:text-left space-y-6">
                     <h2 class="text-clubaccent font-bold tracking-widest uppercase text-sm mb-2">Die Regenten der Saison</h2>
                     <h3 class="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
@@ -121,14 +113,12 @@
                         Prinzessin Melanie
                     </h3>
                     <div class="w-24 h-1 bg-club rounded mx-auto md:mx-0"></div>
-                    
                     <p class="text-lg text-gray-700 leading-relaxed font-medium">
                         Mit einem dreifach donnernden Helau führen <strong>Mario Bogner</strong> und <strong>Melanie Franke</strong> unser Narrenschiff durch die Kampagne 2025/2026! 
                     </p>
                     <p class="text-gray-600 leading-relaxed">
                         Freut euch auf eine unvergessliche Zeit voller Frohsinn, Tanz und Tradition. Unser Prinzenpaar regiert mit Herz und Charme und lädt euch herzlich ein, gemeinsam mit uns die fünfte Jahreszeit zu feiern.
                     </p>
-
                     <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                         <a href="#" class="inline-flex items-center justify-center px-8 py-3 bg-club text-white font-bold rounded-lg shadow-lg hover:bg-clubdark transition transform hover:-translate-y-1">
                             Grußwort lesen
@@ -139,7 +129,7 @@
         </div>
     </section>
 
-    <!-- ================= NEUE TERMINE (AUFKLAPPBAR) ================= -->
+    <!-- ================= TERMINE ================= -->
     <section class="py-24 bg-white flex-grow">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -148,8 +138,7 @@
             </div>
             
             <div class="max-w-4xl mx-auto space-y-6">
-                
-                <!-- TERMIN 1 -->
+                <!-- Termine wie gehabt -->
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
                     <div class="flex flex-col md:flex-row cursor-pointer" onclick="toggleEvent('details-1', 'icon-1')">
                         <div class="bg-club text-white p-6 flex flex-col items-center justify-center min-w-[120px] md:border-r border-blue-900/20 group-hover:bg-clubdark transition">
@@ -176,7 +165,6 @@
                     </div>
                 </div>
 
-                <!-- TERMIN 2 -->
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
                     <div class="flex flex-col md:flex-row cursor-pointer" onclick="toggleEvent('details-2', 'icon-2')">
                         <div class="bg-club text-white p-6 flex flex-col items-center justify-center min-w-[120px] md:border-r border-blue-900/20 group-hover:bg-clubdark transition">
@@ -203,7 +191,6 @@
                     </div>
                 </div>
 
-                <!-- TERMIN 3 -->
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden group">
                     <div class="flex flex-col md:flex-row cursor-pointer" onclick="toggleEvent('details-3', 'icon-3')">
                         <div class="bg-club text-white p-6 flex flex-col items-center justify-center min-w-[120px] md:border-r border-blue-900/20 group-hover:bg-clubdark transition">
@@ -229,15 +216,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ================= CLEANER FOOTER (Wird geladen) ================= -->
+    <!-- ================= FOOTER (Wird geladen) ================= -->
     <div id="footer-placeholder"></div>
 
-    <!-- Script -->
+    <!-- Script (Lädt Header & Footer) -->
     <script src="js/main.js"></script>
 </body>
 </html>
