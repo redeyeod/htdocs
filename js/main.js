@@ -1,60 +1,73 @@
 /**
  * Hauptlogik für die GroKaGe Malsch Webseite
- * Mit erweiterter Fehlerdiagnose für GitHub Pages & Unterordner-Support
  */
-
-console.log("Main.js wurde geladen!");
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Basis-Pfad prüfen (wird in Unterordnern gesetzt, z.B. window.basePath = '../')
+    // Basis-Pfad bestimmen (falls nicht gesetzt, ist er leer)
     const basePath = window.basePath || ''; 
 
-    const headerPlaceholder = document.getElementById('header-placeholder');
+    // 1. Header laden
+    loadComponent('header-placeholder', basePath + 'header.html', () => {
+        // Wenn wir in einem Unterordner sind, müssen Links im Header angepasst werden
+        if (basePath) adjustLinks('header-placeholder', basePath);
+        
+        // Aktiven Link markieren
+        highlightActiveLink();
 
-    if (headerPlaceholder) {
-        // FALL A: Wir nutzen das externe Header-System (index.html)
-        loadComponent('header-placeholder', basePath + 'header.html', () => {
-            console.log("Header erfolgreich nachgeladen.");
-            // Pfade im nachgeladenen HTML anpassen, falls wir im Unterordner sind
-            if (basePath) adjustPaths(headerPlaceholder, basePath);
-            
-            setupMobileMenu();
-            setupScrollEffect();
-        });
-
-        // Footer laden
-        loadComponent('footer-placeholder', basePath + 'footer.html', () => {
-             const footerPlaceholder = document.getElementById('footer-placeholder');
-             if (basePath && footerPlaceholder) adjustPaths(footerPlaceholder, basePath);
-        });
-
-    } else {
-        // FALL B: Header ist hardcoded (gruppen/index.html)
-        console.log("Kein Placeholder gefunden - nutze vorhandenen Header.");
         setupMobileMenu();
         setupScrollEffect();
-    }
+    });
 
-    // Slider nur starten, wenn Container existiert
+    // 2. Footer laden (Enthält jetzt auch das Gruppen-Modal!)
+    loadComponent('footer-placeholder', basePath + 'footer.html', () => {
+        if (basePath) adjustLinks('footer-placeholder', basePath);
+    });
+
+    // 3. Slider starten (nur wenn Container da ist)
     if (document.getElementById('news-container')) {
         initSlider();
     }
 });
 
-// --- HELFER: Pfade in nachgeladenem HTML anpassen ---
-function adjustPaths(container, basePath) {
-    // Links (href) und Bilder (src) anpassen
-    const elements = container.querySelectorAll('[href], [src]');
+// --- HELFER: Links in nachgeladenen Komponenten anpassen ---
+function adjustLinks(containerId, basePath) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const elements = container.querySelectorAll('img, a');
     elements.forEach(el => {
-        const attr = el.hasAttribute('href') ? 'href' : 'src';
+        const attr = el.tagName === 'IMG' ? 'src' : 'href';
         const val = el.getAttribute(attr);
-        // Nur relative Pfade anpassen, die nicht mit http, // oder # beginnen
+        // Nur relative Pfade anpassen, keine externen Links oder Anker/Mail
         if (val && !val.startsWith('http') && !val.startsWith('//') && !val.startsWith('#') && !val.startsWith('mailto')) {
             el.setAttribute(attr, basePath + val);
         }
     });
 }
+
+// --- HELFER: Aktiven Link im Menü markieren ---
+function highlightActiveLink() {
+    const title = document.title; // Titel der aktuellen Seite
+    const header = document.getElementById('navbar');
+    if(!header) return;
+
+    const links = header.querySelectorAll('a.nav-link, a.big-nav-link');
+    links.forEach(link => {
+        // Einfache Logik: Wenn der Linktext im Seitentitel vorkommt
+        // z.B. Link "Unsere Gruppen" passt zu Title "Unsere Gruppen | GroKaGe"
+        if (title.includes(link.textContent.trim()) && link.textContent.trim() !== '') {
+            link.classList.add('text-clubaccent', 'font-bold');
+            link.classList.remove('text-white'); // Farbe überschreiben
+            
+            // Für Desktop (Unterstrich)
+            if (link.classList.contains('nav-link')) {
+                link.style.borderBottom = "2px solid #FF8C00";
+            }
+        }
+    });
+}
+
 
 // --- HELFER: Komponente laden ---
 async function loadComponent(elementId, filePath, callback) {
@@ -69,11 +82,87 @@ async function loadComponent(elementId, filePath, callback) {
         if (callback) callback();
     } catch (error) {
         console.error(`Fehler beim Laden von ${filePath}:`, error);
-        element.innerHTML = `<div style="color:red; padding:10px;">Fehler beim Laden: ${filePath}</div>`;
     }
 }
 
-// --- 1. TOGGLE EVENT DETAILS ---
+// --- GRUPPEN DATEN & MODAL LOGIK (ZENTRALISIERT) ---
+const groupsData = {
+    'storchengarde': { title: 'Storchengarde', subtitle: 'Das Aushängeschild', img: 'images/storchengarde.png', desc: 'Unsere Storchengarde repräsentiert den Verein auf zahlreichen Turnieren und Veranstaltungen. Mit Disziplin und Leidenschaft trainieren sie das ganze Jahr für den perfekten Marsch.', betreuer: 'Anna Müller, Lisa Schmidt', trainer: 'Julia Wagner', contact: 'storchengarde@grokage-malsch.de' },
+    'jugendgarde': { title: 'Jugendgarde', subtitle: 'Die Nachwuchstalente', img: 'images/jugendgarde.png', desc: 'In der Jugendgarde werden die Schritte anspruchsvoller. Hier wachsen die Talente von morgen heran und begeistern mit ihrem Können.', betreuer: 'Sarah Weber', trainer: 'Marie Klein', contact: 'jugendgarde@grokage-malsch.de' },
+    'kindergarde': { title: 'Kindergarde', subtitle: 'Mit Spaß dabei', img: 'images/kindergarde.png', desc: 'Für unsere Kindergarde steht der Spaß am Tanzen im Vordergrund. Spielerisch werden erste Marschschritte und Formationen gelernt.', betreuer: 'Tanja Richter', trainer: 'Vanessa Wolf', contact: 'kindergarde@grokage-malsch.de' },
+    'narrensamen': { title: 'Narrensamen', subtitle: 'Die aller Kleinsten', img: 'images/narrensamen.png', desc: 'Unsere jüngsten Aktiven auf der Bühne. Mit viel Freude und Eifer zeigen sie ihren ersten Showtanz.', betreuer: 'Sabine Neumann', trainer: 'Lara Schwarz', contact: 'narrensamen@grokage-malsch.de' },
+    'storchenkeuken': { title: 'Storchenküken', subtitle: 'Unsere Jüngsten', img: 'images/storchenkueken.png', desc: 'Die Vorstufe zur Garde. Hier werden spielerisch Rhythmusgefühl und Bewegung zur Musik gefördert.', betreuer: 'Jessica Zimmermann', trainer: 'Nina Krüger', contact: 'kueken@grokage-malsch.de' },
+    'maennerballett': { title: 'Männerballett', subtitle: 'Anmut & Eleganz', img: 'images/maennerballett.png', desc: 'Wenn diese Herren die Bühne betreten, bleibt kein Auge trocken. Akrobatik, Humor und eine Prise Selbstironie.', betreuer: 'Markus Braun', trainer: 'Stefanie Hofmann', contact: 'maennerballett@grokage-malsch.de' },
+    'oldstars': { title: 'Old-Stars', subtitle: 'Erfahrung trifft Rhythmus', img: 'images/oldstars.png', desc: 'Ehemalige Gardetänzerinnen und tanzbegeisterte Damen, die es noch einmal wissen wollen. Showtanz vom Feinsten.', betreuer: 'Monika Schmitt', trainer: 'Sandra Lange', contact: 'oldstars@grokage-malsch.de' },
+    'fahnenschwinger': { title: 'Fahnenschwinger', subtitle: 'Tradition in Bewegung', img: 'images/fahnenschwinger.png', desc: 'Mit Präzision und Kraft lassen sie die Fahnen der GroKaGe fliegen. Ein optisches Highlight bei jedem Einmarsch.', betreuer: 'Peter Werner', trainer: 'Klaus Krause', contact: 'fahnen@grokage-malsch.de' },
+    'dominos': { title: 'Mälscher Dominos', subtitle: 'Laufgruppe', img: 'images/maelscherdominos.png', desc: 'Eine feste Größe im Mälscher Fasching. Mit ihren kreativen Kostümen bereichern sie jeden Umzug.', betreuer: 'Familie Meier', trainer: '-', contact: 'dominos@grokage-malsch.de' },
+    'nachtkrabb': { title: 'Mälscher Nachtkrabb', subtitle: 'Laufgruppe', img: 'images/maelschernachtkrabb.png', desc: 'Die mystische Seite der Fasnacht. Mit ihren handgefertigten Masken sorgen sie für Staunen.', betreuer: 'Bernd Lehmann', trainer: '-', contact: 'nachtkrabb@grokage-malsch.de' },
+    'bollehohlchor': { title: 'Bollehohlchor', subtitle: 'Gesang & Stimmung', img: 'images/bollehohlchor.png', desc: 'Lokalkolorit und Stimmungslieder sind ihr Metier. Der Chor sorgt live für beste Unterhaltung.', betreuer: 'Dirk Sommer', trainer: 'Musikalischer Leiter: Hans Durst', contact: 'chor@grokage-malsch.de' },
+    'buettenredner': { title: 'Büttenredner', subtitle: 'Wortakrobaten', img: 'images/buettenredner.png', desc: 'Ob politisch oder gesellschaftskritisch, unsere Redner nehmen kein Blatt vor den Mund.', betreuer: 'Sitzungspräsident', trainer: '-', contact: 'info@grokage-malsch.de' },
+    'elferrat': { title: 'Elferrat', subtitle: 'Das Parlament', img: 'images/elferrat.png', desc: 'Das organisatorische Rückgrat der Sitzungen.', betreuer: 'Präsident', trainer: '-', contact: 'elferrat@grokage-malsch.de' },
+    'dekoteam': { title: 'Dekoteam', subtitle: 'Kreativabteilung', img: 'images/dekoteam.png', desc: 'Sie verwandeln Hallen in Narrentempel.', betreuer: 'Kreativ-Leitung', trainer: '-', contact: 'deko@grokage-malsch.de' },
+    'dekoordenteam': { title: 'Dekoordenteam', subtitle: 'Die Bastler', img: 'images/dekoordenteam.png', desc: 'Zuständig für die Orden und Auszeichnungen.', betreuer: 'Ordensmeister', trainer: '-', contact: 'orden@grokage-malsch.de' },
+    'technikteam': { title: 'Technikteam', subtitle: 'Licht & Ton', img: 'images/technikteam.png', desc: 'Sorgen für den guten Ton und das rechte Licht.', betreuer: 'Technik-Chef', trainer: '-', contact: 'technik@grokage-malsch.de' },
+    'buehnenbau': { title: 'Bühnenbauteam', subtitle: 'Die Handwerker', img: 'images/buehnenbauteam.png', desc: 'Bauen die Kulissen für unsere Shows.', betreuer: 'Bauleiter', trainer: '-', contact: 'bau@grokage-malsch.de' },
+    'socialmedia': { title: 'Social Media Team', subtitle: 'Online Präsenz', img: 'images/socialmediateam.png', desc: 'Halten euch auf Facebook und Instagram auf dem Laufenden.', betreuer: 'Pressewart', trainer: '-', contact: 'social@grokage-malsch.de' },
+    'kuechenteam': { title: 'Küchenteam', subtitle: 'Verpflegung', img: 'images/kuechenteam.png', desc: 'Sorgen dafür, dass niemand hungrig bleibt.', betreuer: 'Küchenchef', trainer: '-', contact: 'kueche@grokage-malsch.de' }
+};
+
+// Global verfügbar machen (window.openGroupModal), damit HTML onclicks funktionieren
+window.openGroupModal = function(groupId) {
+    const modal = document.getElementById('group-modal');
+    const content = document.getElementById('group-modal-content');
+    const data = groupsData[groupId];
+
+    if(!data || !modal) return;
+
+    document.getElementById('modal-title').textContent = data.title;
+    document.getElementById('modal-subtitle').textContent = data.subtitle;
+    document.getElementById('modal-desc').textContent = data.desc;
+    document.getElementById('modal-betreuer').textContent = data.betreuer;
+    document.getElementById('modal-trainer').textContent = data.trainer;
+    
+    // PFAD LOGIK: BasePath davor hängen, damit Bild gefunden wird
+    const basePath = window.basePath || '';
+    const imgEl = document.getElementById('modal-img');
+    
+    // Fallback falls Bild nicht existiert
+    imgEl.onerror = function() {
+        this.onerror = null; 
+        this.src = 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=600&auto=format&fit=crop';
+    };
+    imgEl.src = basePath + data.img;
+    
+    const contactLink = document.getElementById('modal-contact');
+    contactLink.textContent = data.contact;
+    contactLink.href = 'mailto:' + data.contact;
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+    }, 10);
+};
+
+window.closeGroupModal = function() {
+    const modal = document.getElementById('group-modal');
+    const content = document.getElementById('group-modal-content');
+    
+    if(!modal || !content) return;
+
+    content.classList.remove('scale-100', 'opacity-100');
+    content.classList.add('scale-95', 'opacity-0');
+
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }, 300);
+};
+
+
+// --- RESTLICHE FUNKTIONEN (Slider etc.) ---
 function toggleEvent(detailsId, iconId) {
     const details = document.getElementById(detailsId);
     const icon = document.getElementById(iconId);
@@ -87,7 +176,6 @@ function toggleEvent(detailsId, iconId) {
     }
 }
 
-// --- 2. KALENDER EXPORT ---
 function downloadCalendarEvent(title, startDate, endDate, location, description) {
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -112,35 +200,29 @@ END:VCALENDAR`;
     document.body.removeChild(link);
 }
 
-// --- 3. MENÜ FUNKTIONEN ---
 function setupMobileMenu() {
-    // Kleine Verzögerung um sicherzugehen, dass DOM ready ist
-    setTimeout(() => {
-        const btn = document.getElementById('burger-btn');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const menu = document.getElementById('fullscreen-menu');
-        
-        if(!btn || !closeBtn || !menu) return;
+    const btn = document.getElementById('burger-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const menu = document.getElementById('fullscreen-menu');
+    
+    if(!btn || !closeBtn || !menu) return;
 
-        function openMenu() {
-            menu.classList.remove('closed');
-            menu.classList.add('open');
-            document.body.style.overflow = 'hidden'; 
-        }
+    function openMenu() {
+        menu.classList.remove('closed');
+        menu.classList.add('open');
+        document.body.style.overflow = 'hidden'; 
+    }
 
-        function closeMenu() {
-            menu.classList.remove('open');
-            menu.classList.add('closed');
-            document.body.style.overflow = '';
-        }
+    function closeMenu() {
+        menu.classList.remove('open');
+        menu.classList.add('closed');
+        document.body.style.overflow = '';
+    }
 
-        // Event Listener entfernen (falls doppelt) und neu setzen
-        btn.onclick = openMenu;
-        closeBtn.onclick = closeMenu;
-    }, 50);
+    btn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
 }
 
-// --- 4. HEADER SCROLL EFFEKT ---
 function setupScrollEffect() {
     const navbar = document.getElementById('navbar');
     
@@ -158,7 +240,7 @@ function setupScrollEffect() {
     }
 }
 
-// --- 5. SLIDER FUNKTIONEN ---
+// Slider Code wie gehabt...
 const newsData = [
     { id: 1, title: "Ticketvorverkauf gestartet!", text: "Sichert euch jetzt die besten Plätze für unsere große Prunksitzung.", image: "https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=2670&auto=format&fit=crop", date: "Heute" },
     { id: 2, title: "Rückblick Ordensball", text: "Was für ein Abend! Ein dreifach donnerndes Helau auf unsere Geehrten.", image: "https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=2670&auto=format&fit=crop", date: "Gestern" },
