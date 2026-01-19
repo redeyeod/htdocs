@@ -1,62 +1,79 @@
 /**
  * Hauptlogik für die GroKaGe Malsch Webseite
- * Mit erweiterter Fehlerdiagnose für GitHub Pages
+ * Mit erweiterter Fehlerdiagnose für GitHub Pages & Unterordner-Support
  */
 
-console.log("Main.js wurde geladen!"); // Check für die Konsole
+console.log("Main.js wurde geladen!");
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. Header laden mit Fehlermeldung im UI
-    loadComponent('header-placeholder', 'header.html', () => {
-        console.log("Header erfolgreich integriert.");
+    // Basis-Pfad prüfen (wird in Unterordnern gesetzt, z.B. window.basePath = '../')
+    const basePath = window.basePath || ''; 
+
+    const headerPlaceholder = document.getElementById('header-placeholder');
+
+    if (headerPlaceholder) {
+        // FALL A: Wir nutzen das externe Header-System (index.html)
+        loadComponent('header-placeholder', basePath + 'header.html', () => {
+            console.log("Header erfolgreich nachgeladen.");
+            // Pfade im nachgeladenen HTML anpassen, falls wir im Unterordner sind
+            if (basePath) adjustPaths(headerPlaceholder, basePath);
+            
+            setupMobileMenu();
+            setupScrollEffect();
+        });
+
+        // Footer laden
+        loadComponent('footer-placeholder', basePath + 'footer.html', () => {
+             const footerPlaceholder = document.getElementById('footer-placeholder');
+             if (basePath && footerPlaceholder) adjustPaths(footerPlaceholder, basePath);
+        });
+
+    } else {
+        // FALL B: Header ist hardcoded (gruppen/index.html)
+        console.log("Kein Placeholder gefunden - nutze vorhandenen Header.");
         setupMobileMenu();
         setupScrollEffect();
-    });
-
-    // 2. Footer laden
-    loadComponent('footer-placeholder', 'footer.html');
-
-    // 3. Slider starten
-    initSlider();
-});
-
-// --- HELFER: Komponente (HTML-Datei) laden ---
-async function loadComponent(elementId, filePath, callback) {
-    const element = document.getElementById(elementId);
-    if (!element) {
-        console.error(`Platzhalter mit ID '${elementId}' existiert nicht in der index.html!`);
-        return;
     }
 
-    try {
-        // Versuche die Datei zu laden
-        const response = await fetch(filePath);
-        
-        // Prüfen ob Datei gefunden wurde (Status 200 ist OK, 404 ist nicht gefunden)
-        if (!response.ok) {
-            throw new Error(`HTTP Status: ${response.status}`);
-        }
+    // Slider nur starten, wenn Container existiert
+    if (document.getElementById('news-container')) {
+        initSlider();
+    }
+});
 
+// --- HELFER: Pfade in nachgeladenem HTML anpassen ---
+function adjustPaths(container, basePath) {
+    // Links (href) und Bilder (src) anpassen
+    const elements = container.querySelectorAll('[href], [src]');
+    elements.forEach(el => {
+        const attr = el.hasAttribute('href') ? 'href' : 'src';
+        const val = el.getAttribute(attr);
+        // Nur relative Pfade anpassen, die nicht mit http, // oder # beginnen
+        if (val && !val.startsWith('http') && !val.startsWith('//') && !val.startsWith('#') && !val.startsWith('mailto')) {
+            el.setAttribute(attr, basePath + val);
+        }
+    });
+}
+
+// --- HELFER: Komponente laden ---
+async function loadComponent(elementId, filePath, callback) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`HTTP Status: ${response.status}`);
         const text = await response.text();
         element.innerHTML = text;
-        
         if (callback) callback();
-
     } catch (error) {
-        // FEHLER AUF DER SEITE ANZEIGEN
         console.error(`Fehler beim Laden von ${filePath}:`, error);
-        element.innerHTML = `
-            <div style="background:#fee2e2; color:#991b1b; padding:20px; border:1px solid #ef4444; text-align:center; font-weight:bold;">
-                ⚠️ Fehler: Die Datei '${filePath}' konnte nicht geladen werden.<br>
-                <span style="font-weight:normal; font-size:0.9em;">(Grund: ${error.message})</span><br>
-                <small>Tipp: Prüfe Groß-/Kleinschreibung (header.html vs Header.html) und ob die Datei auf GitHub liegt.</small>
-            </div>
-        `;
+        element.innerHTML = `<div style="color:red; padding:10px;">Fehler beim Laden: ${filePath}</div>`;
     }
 }
 
-// --- 1. TOGGLE EVENT DETAILS (Termine aufklappen) ---
+// --- 1. TOGGLE EVENT DETAILS ---
 function toggleEvent(detailsId, iconId) {
     const details = document.getElementById(detailsId);
     const icon = document.getElementById(iconId);
@@ -70,7 +87,7 @@ function toggleEvent(detailsId, iconId) {
     }
 }
 
-// --- 2. KALENDER EXPORT FUNKTION ---
+// --- 2. KALENDER EXPORT ---
 function downloadCalendarEvent(title, startDate, endDate, location, description) {
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -97,16 +114,13 @@ END:VCALENDAR`;
 
 // --- 3. MENÜ FUNKTIONEN ---
 function setupMobileMenu() {
-    // Kurze Verzögerung, falls das DOM noch eine Millisekunde braucht
+    // Kleine Verzögerung um sicherzugehen, dass DOM ready ist
     setTimeout(() => {
         const btn = document.getElementById('burger-btn');
         const closeBtn = document.getElementById('close-menu-btn');
         const menu = document.getElementById('fullscreen-menu');
         
-        if(!btn || !closeBtn || !menu) {
-            console.warn("Menü-Elemente nicht gefunden (Evtl. Header noch nicht geladen)");
-            return;
-        }
+        if(!btn || !closeBtn || !menu) return;
 
         function openMenu() {
             menu.classList.remove('closed');
@@ -120,9 +134,10 @@ function setupMobileMenu() {
             document.body.style.overflow = '';
         }
 
-        btn.addEventListener('click', openMenu);
-        closeBtn.addEventListener('click', closeMenu);
-    }, 100);
+        // Event Listener entfernen (falls doppelt) und neu setzen
+        btn.onclick = openMenu;
+        closeBtn.onclick = closeMenu;
+    }, 50);
 }
 
 // --- 4. HEADER SCROLL EFFEKT ---
@@ -139,7 +154,7 @@ function setupScrollEffect() {
         };
 
         window.addEventListener('scroll', updateHeader);
-        updateHeader(); // Check beim Laden
+        updateHeader(); 
     }
 }
 
