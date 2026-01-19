@@ -30,205 +30,127 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <!-- ================= HEADER / NAVIGATION ================= -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-700 py-6 text-white">
-        <div class="container mx-auto px-6 flex justify-between items-center relative z-50">
-            
-            <!-- Logo -->
-            <a href="../index.html" class="logo-box glass-logo rounded-full px-5 py-1 shadow-lg text-lg font-black tracking-tighter text-club flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:bg-white/80">
-                <img src="../images/logo.png" 
-                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/6964/6964037.png'" 
-                     alt="GroKaGe Logo" 
-                     class="h-10 w-auto transition-all duration-300 logo-img drop-shadow-md -my-1">
-                GroKaGe Malsch
-            </a>
+    <!-- ================= HEADER (Wird geladen) ================= -->
+    <div id="header-placeholder"></div>
 
-            <!-- Rechte Seite -->
-            <div class="flex items-center gap-8">
-                <div class="hidden lg:flex space-x-6 font-bold text-lg items-center drop-shadow-md">
-                    <a href="#" class="nav-link hover:text-clubaccent transition">Aktuelles</a>
-                    <a href="#" class="nav-link text-clubaccent transition border-b-2 border-clubaccent">Unsere Gruppen</a>
-                    <a href="#" class="nav-link hover:text-clubaccent transition">Über uns</a>
-                    <a href="#" class="nav-link hover:text-clubaccent transition">Kontakt</a>
-                </div>
-
-                <button id="burger-btn" class="text-3xl focus:outline-none hover:text-clubaccent transition transform hover:scale-110 drop-shadow-md cursor-pointer">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+    <!-- ================= HERO BEREICH (Kompakter für Unterseiten) ================= -->
+    <section class="pt-40 pb-20 bg-gradient-to-b from-blue-100 to-white relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-black text-club mb-4 uppercase tracking-tight">Unsere Gruppen</h1>
+            <div class="w-24 h-1 bg-clubaccent mx-auto rounded-full"></div>
+            <p class="text-gray-600 mt-6 max-w-2xl mx-auto text-lg">
+                Vom kleinsten Narrensamen bis zum stolzen Elferrat – hier sind alle, die die GroKaGe Malsch mit Leben füllen.
+            </p>
         </div>
-    </nav>
-
-    <!-- VOLLBILD MENÜ -->
-    <div id="fullscreen-menu" class="closed fixed inset-0 z-[60] bg-clubdark/50 backdrop-blur-md text-white flex flex-col overflow-hidden">
-        <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none">
-             <img src="../images/logo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/6964/6964037.png'" class="w-[600px] h-auto grayscale">
-        </div>
-        <button id="close-menu-btn" class="absolute top-8 right-8 text-4xl text-white/80 hover:text-clubaccent transition hover:rotate-90 z-20 cursor-pointer">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <div class="container mx-auto px-6 h-full flex flex-col justify-center relative z-10">
-            <div class="grid lg:grid-cols-12 gap-12 h-3/4 items-center">
-                <div class="lg:col-span-7 space-y-6 border-l-4 border-clubaccent pl-8">
-                    <span class="block text-clubaccent font-bold tracking-widest uppercase text-sm mb-4">Navigation</span>
-                    <div><a href="../index.html" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Startseite</a></div>
-                    <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Aktuelles</a></div>
-                    <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Veranstaltungen</a></div>
-                    <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-clubaccent transition-colors duration-300">Unsere Gruppen</a></div>
-                </div>
-                <div class="lg:col-span-5 flex flex-col gap-12 text-lg font-light text-blue-100">
-                    <div>
-                        <h4 class="text-white font-bold text-xl mb-6 border-b border-white/20 pb-2">Vereinsleben</h4>
-                        <ul class="space-y-4">
-                            <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-camera mr-2 opacity-70"></i> Galerie</a></li>
-                            <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-road mr-2 opacity-70"></i> Eigene Umzüge</a></li>
-                            <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-handshake mr-2 opacity-70"></i> Sponsoren & Partner</a></li>
-                            <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-users mr-2 opacity-70"></i> Befreundete Vereine</a></li>
-                            <li class="pt-4"><a href="#" class="inline-block bg-clubaccent text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-clubaccent transition-all duration-300 shadow-lg border border-transparent hover:border-clubaccent w-full text-center"><i class="fa-solid fa-envelope mr-2"></i> Kontakt aufnehmen</a></li>
-                        </ul>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/10">
-                        <h4 class="text-white font-bold mb-2">Für Mitglieder</h4>
-                        <p class="text-sm text-blue-200 mb-4">Zugang zu internen Dokumenten und Terminen.</p>
-                        <a href="#" class="inline-flex items-center justify-center w-full bg-clubaccent hover:bg-orange-500 text-white font-bold py-3 px-4 rounded transition shadow-lg transform hover:-translate-y-1"><i class="fa-solid fa-lock mr-2"></i> Zum Mitgliederbereich</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ================= 1. DAS PRINZENPAAR (Kompakter) ================= -->
-    <section class="pt-36 pb-20 bg-gradient-to-b from-blue-200 to-white relative">
-        <div class="container mx-auto px-6">
-            <div class="max-w-5xl mx-auto bg-clubdark rounded-2xl overflow-hidden shadow-2xl relative">
-                <div class="absolute top-0 right-0 w-1/2 h-full bg-club opacity-50 transform skew-x-12 translate-x-20"></div>
-                
-                <div class="grid md:grid-cols-2 gap-0 items-center relative z-10">
-                    <div class="h-full min-h-[300px]">
-                        <!-- Bild: prinzenpaar.png -->
-                        <img src="../images/prinzenpaar.png" 
-                             onerror="this.src='https://images.unsplash.com/photo-1562512684-2e23296860ec?q=80&w=2670&auto=format&fit=crop'" 
-                             alt="Prinzenpaar" 
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-8 md:p-10 text-white">
-                        <div class="inline-block bg-clubaccent text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">Kampagne 25/26</div>
-                        <h2 class="text-3xl font-black mb-2 leading-tight">Unser Prinzenpaar</h2>
-                        <h3 class="text-xl font-light text-blue-200 mb-4">Mario & Melanie</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                            Mit Charme, Herz und einem dreifach donnernden Helau regieren sie über die Malscher Narren. Wir sind stolz, euch unsere Regenten präsentieren zu dürfen.
-                        </p>
-                        <div class="flex gap-4">
-                            <button class="bg-white text-clubdark px-5 py-2 rounded-lg text-sm font-bold hover:bg-clubaccent hover:text-white transition shadow-md">Grußwort lesen</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Deko Hintergrund -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+             <img src="../images/logo.png" class="absolute -top-20 -left-20 w-96 grayscale">
+             <img src="../images/logo.png" class="absolute top-40 -right-20 w-64 grayscale rotate-12">
         </div>
     </section>
 
-    <!-- ================= 2. TANZGRUPPEN ================= -->
-    <section class="py-16 bg-gray-50">
+    <!-- ================= 1. TANZGRUPPEN ================= -->
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-black text-club uppercase tracking-wide">Unsere Tanzgarden</h2>
-                <p class="text-gray-500 mt-2">Akrobatik, Tradition und Eleganz. Klicke für Details!</p>
+                <p class="text-gray-500 mt-2">Akrobatik, Tradition und Eleganz.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Card 1: Storchengarde -->
-                <div onclick="openGroupModal('storchengarde')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('storchengarde')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/storchengarde.png" onerror="this.src='https://images.unsplash.com/photo-1504609813442-a8924e83f76e?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Storchengarde</h3>
-                        <p class="text-sm text-gray-300 mt-1">Das Aushängeschild</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Das Aushängeschild</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 2: Jugendgarde -->
-                <div onclick="openGroupModal('jugendgarde')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('jugendgarde')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/jugendgarde.png" onerror="this.src='https://images.unsplash.com/photo-1535525153412-5a42439a210d?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Jugendgarde</h3>
-                        <p class="text-sm text-gray-300 mt-1">Die Nachwuchstalente</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Die Nachwuchstalente</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 3: Kindergarde -->
-                <div onclick="openGroupModal('kindergarde')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('kindergarde')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/kindergarde.png" onerror="this.src='https://images.unsplash.com/photo-1621976498727-9e5909348d47?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Kindergarde</h3>
-                        <p class="text-sm text-gray-300 mt-1">Mit Spaß dabei</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Mit Spaß dabei</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 4: Narrensamen -->
-                <div onclick="openGroupModal('narrensamen')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('narrensamen')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/narrensamen.png" onerror="this.src='https://images.unsplash.com/photo-1602660724625-27a3c3070494?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Narrensamen</h3>
-                        <p class="text-sm text-gray-300 mt-1">Die aller Kleinsten</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Die aller Kleinsten</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 5: Storchenküken -->
-                <div onclick="openGroupModal('storchenkeuken')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('storchenkeuken')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/storchenkueken.png" onerror="this.src='https://images.unsplash.com/photo-1516475429286-465d815a0df7?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Storchenküken</h3>
-                        <p class="text-sm text-gray-300 mt-1">Unsere Jüngsten</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Unsere Jüngsten</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 6: Männerballett -->
-                <div onclick="openGroupModal('maennerballett')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('maennerballett')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/maennerballett.png" onerror="this.src='https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=2574&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Männerballett</h3>
-                        <p class="text-sm text-gray-300 mt-1">Anmut & pure Eleganz</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Anmut & pure Eleganz</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 7: Old-Stars -->
-                <div onclick="openGroupModal('oldstars')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('oldstars')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/oldstars.png" onerror="this.src='https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Old-Stars</h3>
-                        <p class="text-sm text-gray-300 mt-1">Erfahrung trifft Rhythmus</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Erfahrung trifft Rhythmus</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
 
                 <!-- Card 8: Fahnenschwinger -->
-                <div onclick="openGroupModal('fahnenschwinger')" class="group relative rounded-xl overflow-hidden h-72 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+                <div onclick="openGroupModal('fahnenschwinger')" class="group relative rounded-xl overflow-hidden h-96 shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                     <img src="../images/fahnenschwinger.png" onerror="this.src='https://images.unsplash.com/photo-1563811693-4e63773ba9d4?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-clubdark/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
                         <h3 class="text-xl font-bold">Fahnenschwinger</h3>
-                        <p class="text-sm text-gray-300 mt-1">Tradition in Bewegung</p>
-                        <span class="inline-block mt-2 text-xs font-bold text-clubaccent uppercase tracking-wider opacity-0 group-hover:opacity-100 transition delay-100">Mehr Infos <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <p class="text-sm text-blue-200 mt-1 opacity-0 group-hover:opacity-100 transition duration-300 delay-75">Tradition in Bewegung</p>
+                        <span class="inline-block mt-4 text-xs font-bold text-clubaccent uppercase tracking-wider border-b-2 border-clubaccent pb-1">Mehr Infos</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ================= 3. SONSTIGE BÜHNENGRUPPEN ================= -->
-    <section class="py-20 bg-white border-t border-gray-100">
+    <!-- ================= 2. SONSTIGE BÜHNENGRUPPEN ================= -->
+    <section class="py-20 bg-gray-50 border-t border-gray-200">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-black text-club uppercase tracking-wide">Sonstige Bühnengruppen</h2>
@@ -237,33 +159,33 @@
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Bollehohlchor -->
-                <div onclick="openGroupModal('bollehohlchor')" class="bg-gray-50 rounded-2xl p-8 flex items-center gap-6 hover:shadow-lg transition border border-gray-100 group cursor-pointer hover:bg-white">
-                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-sm flex-shrink-0 group-hover:scale-105 transition">
+                <div onclick="openGroupModal('bollehohlchor')" class="bg-white rounded-2xl p-8 flex items-center gap-6 hover:shadow-xl transition border border-gray-100 group cursor-pointer hover:border-l-4 hover:border-club">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm flex-shrink-0 group-hover:scale-105 transition">
                         <img src="../images/bollehohlchor.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075908.png'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Bollehohlchor</h3>
-                        <p class="text-gray-600">Gesang, Stimmung und lokale Hits. Der Chor bringt jeden Saal zum Beben.</p>
-                        <span class="text-sm font-bold text-clubaccent mt-2 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
+                        <p class="text-gray-600 text-sm">Gesang, Stimmung und lokale Hits. Der Chor bringt jeden Saal zum Beben.</p>
+                        <span class="text-xs font-bold text-clubaccent mt-3 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
                     </div>
                 </div>
 
                 <!-- Büttenredner -->
-                <div onclick="openGroupModal('buettenredner')" class="bg-gray-50 rounded-2xl p-8 flex items-center gap-6 hover:shadow-lg transition border border-gray-100 group cursor-pointer hover:bg-white">
-                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-sm flex-shrink-0 group-hover:scale-105 transition">
+                <div onclick="openGroupModal('buettenredner')" class="bg-white rounded-2xl p-8 flex items-center gap-6 hover:shadow-xl transition border border-gray-100 group cursor-pointer hover:border-l-4 hover:border-club">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm flex-shrink-0 group-hover:scale-105 transition">
                         <img src="../images/buettenredner.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2983/2983754.png'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Büttenredner</h3>
-                        <p class="text-gray-600">Scharfe Zungen und pointierter Witz. Politisches und Lokales humorvoll verpackt.</p>
-                        <span class="text-sm font-bold text-clubaccent mt-2 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
+                        <p class="text-gray-600 text-sm">Scharfe Zungen und pointierter Witz. Politisches und Lokales humorvoll verpackt.</p>
+                        <span class="text-xs font-bold text-clubaccent mt-3 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ================= 4. LAUFGRUPPEN ================= -->
+    <!-- ================= 3. LAUFGRUPPEN ================= -->
     <section class="py-20 bg-club text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div class="container mx-auto px-6 relative z-10">
@@ -271,33 +193,33 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Dominos -->
-                <div onclick="openGroupModal('dominos')" class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 flex items-center gap-6 hover:bg-white/20 transition duration-300 cursor-pointer group">
-                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/30 flex-shrink-0 group-hover:scale-105 transition">
+                <div onclick="openGroupModal('dominos')" class="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex items-center gap-6 hover:bg-white/20 transition duration-300 cursor-pointer group border border-white/10">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/20 flex-shrink-0 group-hover:scale-105 transition">
                         <img src="../images/maelscherdominos.png" onerror="this.src='https://images.unsplash.com/photo-1533552097072-628dc0716618?q=80&w=2574&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2">Mälscher Dominos</h3>
-                        <p class="text-blue-100">Bunt, laut und immer gut gelaunt - unsere Dominos sind das Highlight bei jedem Umzug.</p>
-                        <span class="text-sm font-bold text-clubaccent mt-2 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
+                        <p class="text-blue-100 text-sm">Bunt, laut und immer gut gelaunt - unsere Dominos sind das Highlight bei jedem Umzug.</p>
+                        <span class="text-xs font-bold text-clubaccent mt-3 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
                     </div>
                 </div>
 
                 <!-- Nachtkrabb -->
-                <div onclick="openGroupModal('nachtkrabb')" class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 flex items-center gap-6 hover:bg-white/20 transition duration-300 cursor-pointer group">
-                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/30 flex-shrink-0 group-hover:scale-105 transition">
+                <div onclick="openGroupModal('nachtkrabb')" class="bg-white/10 backdrop-blur-md rounded-2xl p-8 flex items-center gap-6 hover:bg-white/20 transition duration-300 cursor-pointer group border border-white/10">
+                    <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-white/20 flex-shrink-0 group-hover:scale-105 transition">
                         <img src="../images/maelschernachtkrabb.png" onerror="this.src='https://images.unsplash.com/photo-1509347528160-9a9e33742cd4?q=80&w=2670&auto=format&fit=crop'" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold mb-2">Mälscher Nachtkrabb</h3>
-                        <p class="text-blue-100">Mystisch und traditionsreich ziehen die Nachtkrabben durch die Gassen.</p>
-                        <span class="text-sm font-bold text-clubaccent mt-2 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
+                        <p class="text-blue-100 text-sm">Mystisch und traditionsreich ziehen die Nachtkrabben durch die Gassen.</p>
+                        <span class="text-xs font-bold text-clubaccent mt-3 inline-block opacity-0 group-hover:opacity-100 transition">Details ansehen &rarr;</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ================= 5. HINTER DEN KULISSEN (Liste) ================= -->
+    <!-- ================= 4. HINTER DEN KULISSEN ================= -->
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
@@ -306,33 +228,32 @@
             </div>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <!-- Buttons jetzt klickbar für Modal -->
-                <button onclick="openGroupModal('elferrat')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('elferrat')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-users-gear mr-2 text-clubaccent"></i> Elferrat
                 </button>
-                <button onclick="openGroupModal('dekoteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('dekoteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-paint-roller mr-2 text-clubaccent"></i> Dekoteam
                 </button>
-                <button onclick="openGroupModal('dekoordenteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('dekoordenteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-medal mr-2 text-clubaccent"></i> Dekoordenteam
                 </button>
-                <button onclick="openGroupModal('technikteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('technikteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-sliders mr-2 text-clubaccent"></i> Technikteam
                 </button>
-                <button onclick="openGroupModal('buehnenbau')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('buehnenbau')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-hammer mr-2 text-clubaccent"></i> Bühnenbauteam
                 </button>
-                <button onclick="openGroupModal('socialmedia')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('socialmedia')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-camera-retro mr-2 text-clubaccent"></i> Social Media Team
                 </button>
-                <button onclick="openGroupModal('kuechenteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center">
+                <button onclick="openGroupModal('kuechenteam')" class="bg-white px-6 py-3 rounded-full shadow-sm text-gray-700 font-bold border border-gray-100 hover:border-clubaccent hover:text-club transition flex items-center transform hover:-translate-y-1">
                     <i class="fa-solid fa-utensils mr-2 text-clubaccent"></i> Küchenteam
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- ================= 6. SONSTIGE ÄMTER ================= -->
+    <!-- ================= 5. SONSTIGE ÄMTER ================= -->
     <section class="py-16 bg-white border-t border-gray-200">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
@@ -374,33 +295,20 @@
         </div>
     </section>
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="bg-clubdark text-white py-8 border-t border-blue-900">
-        <div class="container mx-auto px-6 text-center space-y-4">
-            <p class="text-lg font-bold text-white opacity-90">&copy; 2026 GroKaGe Malsch e.V.</p>
-            <div class="flex justify-center gap-6 text-sm text-blue-300">
-                <a href="#" class="hover:text-clubaccent transition">Impressum</a>
-                <span class="opacity-50">|</span>
-                <a href="#" class="hover:text-clubaccent transition">Datenschutzhinweise</a>
-            </div>
-        </div>
-    </footer>
+    <!-- ================= FOOTER (Wird geladen) ================= -->
+    <div id="footer-placeholder"></div>
 
     <!-- ================= GRUPPEN-MODAL ================= -->
     <div id="group-modal" class="fixed inset-0 z-[100] hidden">
-        <!-- Backdrop mit Blur -->
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeGroupModal()"></div>
         
-        <!-- Modal Content -->
         <div class="relative z-10 flex items-center justify-center min-h-screen p-4">
             <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-95 opacity-0" id="group-modal-content">
                 
-                <!-- Close Button -->
                 <button onclick="closeGroupModal()" class="absolute top-4 right-4 bg-white/20 hover:bg-white text-white rounded-full w-8 h-8 flex items-center justify-center transition z-20">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
 
-                <!-- Header Bild -->
                 <div class="h-48 bg-gray-200 relative">
                     <img id="modal-img" src="" alt="Gruppenbild" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-club to-transparent opacity-90"></div>
@@ -410,12 +318,10 @@
                     </div>
                 </div>
 
-                <!-- Body -->
                 <div class="p-6 space-y-6">
                     <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed">Beschreibung...</p>
                     
                     <div class="space-y-4 border-t border-gray-100 pt-4">
-                        <!-- Betreuer -->
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-club shrink-0">
                                 <i class="fa-solid fa-user-group"></i>
@@ -426,7 +332,6 @@
                             </div>
                         </div>
 
-                        <!-- Trainer -->
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-clubaccent shrink-0">
                                 <i class="fa-solid fa-person-chalkboard"></i>
@@ -437,7 +342,6 @@
                             </div>
                         </div>
 
-                        <!-- Kontakt -->
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 shrink-0">
                                 <i class="fa-solid fa-envelope"></i>
@@ -459,117 +363,23 @@
 
     <!-- Script für Modal-Logik & Daten -->
     <script>
-        // --- DATEN FÜR DIE GRUPPEN ---
+        // 1. BasePath setzen (WICHTIG für Unterordner!)
+        window.basePath = '../'; 
+
+        // 2. Daten für Modal
         const groupsData = {
-            'storchengarde': {
-                title: 'Storchengarde',
-                subtitle: 'Das Aushängeschild',
-                img: '../images/storchengarde.png',
-                desc: 'Unsere Storchengarde repräsentiert den Verein auf zahlreichen Turnieren und Veranstaltungen. Mit Disziplin und Leidenschaft trainieren sie das ganze Jahr für den perfekten Marsch.',
-                betreuer: 'Anna Müller, Lisa Schmidt',
-                trainer: 'Julia Wagner',
-                contact: 'storchengarde@grokage-malsch.de'
-            },
-            'jugendgarde': {
-                title: 'Jugendgarde',
-                subtitle: 'Die Nachwuchstalente',
-                img: '../images/jugendgarde.png',
-                desc: 'In der Jugendgarde werden die Schritte anspruchsvoller. Hier wachsen die Talente von morgen heran und begeistern mit ihrem Können.',
-                betreuer: 'Sarah Weber',
-                trainer: 'Marie Klein',
-                contact: 'jugendgarde@grokage-malsch.de'
-            },
-            'kindergarde': {
-                title: 'Kindergarde',
-                subtitle: 'Mit Spaß dabei',
-                img: '../images/kindergarde.png',
-                desc: 'Für unsere Kindergarde steht der Spaß am Tanzen im Vordergrund. Spielerisch werden erste Marschschritte und Formationen gelernt.',
-                betreuer: 'Tanja Richter',
-                trainer: 'Vanessa Wolf',
-                contact: 'kindergarde@grokage-malsch.de'
-            },
-            'narrensamen': {
-                title: 'Narrensamen',
-                subtitle: 'Die aller Kleinsten',
-                img: '../images/narrensamen.png',
-                desc: 'Unsere jüngsten Aktiven auf der Bühne. Mit viel Freude und Eifer zeigen sie ihren ersten Showtanz.',
-                betreuer: 'Sabine Neumann',
-                trainer: 'Lara Schwarz',
-                contact: 'narrensamen@grokage-malsch.de'
-            },
-            'storchenkeuken': {
-                title: 'Storchenküken',
-                subtitle: 'Unsere Jüngsten',
-                img: '../images/storchenkueken.png',
-                desc: 'Die Vorstufe zur Garde. Hier werden spielerisch Rhythmusgefühl und Bewegung zur Musik gefördert.',
-                betreuer: 'Jessica Zimmermann',
-                trainer: 'Nina Krüger',
-                contact: 'kueken@grokage-malsch.de'
-            },
-            'maennerballett': {
-                title: 'Männerballett',
-                subtitle: 'Anmut & Eleganz',
-                img: '../images/maennerballett.png',
-                desc: 'Wenn diese Herren die Bühne betreten, bleibt kein Auge trocken. Akrobatik, Humor und eine Prise Selbstironie.',
-                betreuer: 'Markus Braun',
-                trainer: 'Stefanie Hofmann',
-                contact: 'maennerballett@grokage-malsch.de'
-            },
-            'oldstars': {
-                title: 'Old-Stars',
-                subtitle: 'Erfahrung trifft Rhythmus',
-                img: '../images/oldstars.png',
-                desc: 'Ehemalige Gardetänzerinnen und tanzbegeisterte Damen, die es noch einmal wissen wollen. Showtanz vom Feinsten.',
-                betreuer: 'Monika Schmitt',
-                trainer: 'Sandra Lange',
-                contact: 'oldstars@grokage-malsch.de'
-            },
-            'fahnenschwinger': {
-                title: 'Fahnenschwinger',
-                subtitle: 'Tradition in Bewegung',
-                img: '../images/fahnenschwinger.png',
-                desc: 'Mit Präzision und Kraft lassen sie die Fahnen der GroKaGe fliegen. Ein optisches Highlight bei jedem Einmarsch.',
-                betreuer: 'Peter Werner',
-                trainer: 'Klaus Krause',
-                contact: 'fahnen@grokage-malsch.de'
-            },
-            'dominos': {
-                title: 'Mälscher Dominos',
-                subtitle: 'Laufgruppe',
-                img: '../images/maelscherdominos.png',
-                desc: 'Eine feste Größe im Mälscher Fasching. Mit ihren kreativen Kostümen bereichern sie jeden Umzug.',
-                betreuer: 'Familie Meier',
-                trainer: '-',
-                contact: 'dominos@grokage-malsch.de'
-            },
-            'nachtkrabb': {
-                title: 'Mälscher Nachtkrabb',
-                subtitle: 'Laufgruppe',
-                img: '../images/maelschernachtkrabb.png',
-                desc: 'Die mystische Seite der Fasnacht. Mit ihren handgefertigten Masken sorgen sie für Staunen.',
-                betreuer: 'Bernd Lehmann',
-                trainer: '-',
-                contact: 'nachtkrabb@grokage-malsch.de'
-            },
-            'bollehohlchor': {
-                title: 'Bollehohlchor',
-                subtitle: 'Gesang & Stimmung',
-                img: '../images/bollehohlchor.png', 
-                desc: 'Lokalkolorit und Stimmungslieder sind ihr Metier. Der Chor sorgt live für beste Unterhaltung.',
-                betreuer: 'Dirk Sommer',
-                trainer: 'Musikalischer Leiter: Hans Durst',
-                contact: 'chor@grokage-malsch.de'
-            },
-            'buettenredner': {
-                title: 'Büttenredner',
-                subtitle: 'Wortakrobaten',
-                img: '../images/buettenredner.png', 
-                desc: 'Ob politisch oder gesellschaftskritisch, unsere Redner nehmen kein Blatt vor den Mund.',
-                betreuer: 'Sitzungspräsident',
-                trainer: '-',
-                contact: 'info@grokage-malsch.de'
-            },
-            // Allgemeine Teams
+            'storchengarde': { title: 'Storchengarde', subtitle: 'Das Aushängeschild', img: '../images/storchengarde.png', desc: 'Unsere Storchengarde repräsentiert den Verein auf zahlreichen Turnieren und Veranstaltungen. Mit Disziplin und Leidenschaft trainieren sie das ganze Jahr für den perfekten Marsch.', betreuer: 'Anna Müller, Lisa Schmidt', trainer: 'Julia Wagner', contact: 'storchengarde@grokage-malsch.de' },
+            'jugendgarde': { title: 'Jugendgarde', subtitle: 'Die Nachwuchstalente', img: '../images/jugendgarde.png', desc: 'In der Jugendgarde werden die Schritte anspruchsvoller. Hier wachsen die Talente von morgen heran und begeistern mit ihrem Können.', betreuer: 'Sarah Weber', trainer: 'Marie Klein', contact: 'jugendgarde@grokage-malsch.de' },
+            'kindergarde': { title: 'Kindergarde', subtitle: 'Mit Spaß dabei', img: '../images/kindergarde.png', desc: 'Für unsere Kindergarde steht der Spaß am Tanzen im Vordergrund. Spielerisch werden erste Marschschritte und Formationen gelernt.', betreuer: 'Tanja Richter', trainer: 'Vanessa Wolf', contact: 'kindergarde@grokage-malsch.de' },
+            'narrensamen': { title: 'Narrensamen', subtitle: 'Die aller Kleinsten', img: '../images/narrensamen.png', desc: 'Unsere jüngsten Aktiven auf der Bühne. Mit viel Freude und Eifer zeigen sie ihren ersten Showtanz.', betreuer: 'Sabine Neumann', trainer: 'Lara Schwarz', contact: 'narrensamen@grokage-malsch.de' },
+            'storchenkeuken': { title: 'Storchenküken', subtitle: 'Unsere Jüngsten', img: '../images/storchenkueken.png', desc: 'Die Vorstufe zur Garde. Hier werden spielerisch Rhythmusgefühl und Bewegung zur Musik gefördert.', betreuer: 'Jessica Zimmermann', trainer: 'Nina Krüger', contact: 'kueken@grokage-malsch.de' },
+            'maennerballett': { title: 'Männerballett', subtitle: 'Anmut & Eleganz', img: '../images/maennerballett.png', desc: 'Wenn diese Herren die Bühne betreten, bleibt kein Auge trocken. Akrobatik, Humor und eine Prise Selbstironie.', betreuer: 'Markus Braun', trainer: 'Stefanie Hofmann', contact: 'maennerballett@grokage-malsch.de' },
+            'oldstars': { title: 'Old-Stars', subtitle: 'Erfahrung trifft Rhythmus', img: '../images/oldstars.png', desc: 'Ehemalige Gardetänzerinnen und tanzbegeisterte Damen, die es noch einmal wissen wollen. Showtanz vom Feinsten.', betreuer: 'Monika Schmitt', trainer: 'Sandra Lange', contact: 'oldstars@grokage-malsch.de' },
+            'fahnenschwinger': { title: 'Fahnenschwinger', subtitle: 'Tradition in Bewegung', img: '../images/fahnenschwinger.png', desc: 'Mit Präzision und Kraft lassen sie die Fahnen der GroKaGe fliegen. Ein optisches Highlight bei jedem Einmarsch.', betreuer: 'Peter Werner', trainer: 'Klaus Krause', contact: 'fahnen@grokage-malsch.de' },
+            'dominos': { title: 'Mälscher Dominos', subtitle: 'Laufgruppe', img: '../images/maelscherdominos.png', desc: 'Eine feste Größe im Mälscher Fasching. Mit ihren kreativen Kostümen bereichern sie jeden Umzug.', betreuer: 'Familie Meier', trainer: '-', contact: 'dominos@grokage-malsch.de' },
+            'nachtkrabb': { title: 'Mälscher Nachtkrabb', subtitle: 'Laufgruppe', img: '../images/maelschernachtkrabb.png', desc: 'Die mystische Seite der Fasnacht. Mit ihren handgefertigten Masken sorgen sie für Staunen.', betreuer: 'Bernd Lehmann', trainer: '-', contact: 'nachtkrabb@grokage-malsch.de' },
+            'bollehohlchor': { title: 'Bollehohlchor', subtitle: 'Gesang & Stimmung', img: '../images/bollehohlchor.png', desc: 'Lokalkolorit und Stimmungslieder sind ihr Metier. Der Chor sorgt live für beste Unterhaltung.', betreuer: 'Dirk Sommer', trainer: 'Musikalischer Leiter: Hans Durst', contact: 'chor@grokage-malsch.de' },
+            'buettenredner': { title: 'Büttenredner', subtitle: 'Wortakrobaten', img: '../images/buettenredner.png', desc: 'Ob politisch oder gesellschaftskritisch, unsere Redner nehmen kein Blatt vor den Mund.', betreuer: 'Sitzungspräsident', trainer: '-', contact: 'info@grokage-malsch.de' },
             'elferrat': { title: 'Elferrat', subtitle: 'Das Parlament', img: '../images/elferrat.png', desc: 'Das organisatorische Rückgrat der Sitzungen.', betreuer: 'Sitzungspräsident', trainer: '-', contact: 'elferrat@grokage-malsch.de' },
             'dekoteam': { title: 'Dekoteam', subtitle: 'Kreativabteilung', img: '../images/dekoteam.png', desc: 'Sie verwandeln Hallen in Narrentempel.', betreuer: 'Kreativ-Leitung', trainer: '-', contact: 'deko@grokage-malsch.de' },
             'dekoordenteam': { title: 'Dekoordenteam', subtitle: 'Die Bastler', img: '../images/dekoordenteam.png', desc: 'Zuständig für die Orden und Auszeichnungen.', betreuer: 'Ordensmeister', trainer: '-', contact: 'orden@grokage-malsch.de' },
@@ -579,7 +389,6 @@
             'kuechenteam': { title: 'Küchenteam', subtitle: 'Verpflegung', img: '../images/kuechenteam.png', desc: 'Sorgen dafür, dass niemand hungrig bleibt.', betreuer: 'Küchenchef', trainer: '-', contact: 'kueche@grokage-malsch.de' }
         };
 
-        // --- MODAL LOGIK ---
         function openGroupModal(groupId) {
             const modal = document.getElementById('group-modal');
             const content = document.getElementById('group-modal-content');
@@ -587,27 +396,22 @@
 
             if(!data) return;
 
-            // Daten setzen
             document.getElementById('modal-title').textContent = data.title;
             document.getElementById('modal-subtitle').textContent = data.subtitle;
             document.getElementById('modal-desc').textContent = data.desc;
             document.getElementById('modal-betreuer').textContent = data.betreuer;
             document.getElementById('modal-trainer').textContent = data.trainer;
             
-            // Bild setzen (Fallback falls leer)
             const imgEl = document.getElementById('modal-img');
             imgEl.src = data.img || 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=2670&auto=format&fit=crop';
             
-            // Kontakt Link
             const contactLink = document.getElementById('modal-contact');
             contactLink.textContent = data.contact;
             contactLink.href = 'mailto:' + data.contact;
 
-            // Öffnen
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Scroll sperren
+            document.body.style.overflow = 'hidden';
 
-            // Animation
             setTimeout(() => {
                 content.classList.remove('scale-95', 'opacity-0');
                 content.classList.add('scale-100', 'opacity-100');
@@ -618,20 +422,17 @@
             const modal = document.getElementById('group-modal');
             const content = document.getElementById('group-modal-content');
 
-            // Animation rückwärts
             content.classList.remove('scale-100', 'opacity-100');
             content.classList.add('scale-95', 'opacity-0');
 
             setTimeout(() => {
                 modal.classList.add('hidden');
-                document.body.style.overflow = ''; // Scroll freigeben
+                document.body.style.overflow = '';
             }, 300);
         }
-
-        // Script für Navbar und Menü laden
-        const script = document.createElement('script');
-        script.src = "../js/main.js";
-        document.body.appendChild(script);
     </script>
+
+    <!-- 3. Main Script laden (steuert Header/Footer Load) -->
+    <script src="../js/main.js"></script>
 </body>
 </html>
