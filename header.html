@@ -1,0 +1,66 @@
+<!-- ================= HEADER / NAVIGATION ================= -->
+<nav id="navbar" class="fixed w-full z-50 transition-all duration-700 py-6 text-white">
+    <div class="container mx-auto px-6 flex justify-between items-center relative z-50">
+        
+        <!-- Logo -->
+        <a href="index.html" class="logo-box glass-logo rounded-full px-5 py-1 shadow-lg text-lg font-black tracking-tighter text-club flex items-center gap-3 transition-all duration-300 hover:scale-105 hover:bg-white/80">
+            <img src="images/logo.png" 
+                 onerror="this.src='https://cdn-icons-png.flaticon.com/512/6964/6964037.png'" 
+                 alt="GroKaGe Logo" 
+                 class="h-10 w-auto transition-all duration-300 logo-img drop-shadow-md -my-1">
+            GroKaGe Malsch
+        </a>
+
+        <!-- Rechte Seite -->
+        <div class="flex items-center gap-8">
+            <div class="hidden lg:flex space-x-6 font-bold text-lg items-center drop-shadow-md">
+                <a href="#" class="nav-link hover:text-clubaccent transition">Aktuelles</a>
+                <a href="#" class="nav-link hover:text-clubaccent transition">Unsere Gruppen</a>
+                <a href="#" class="nav-link hover:text-clubaccent transition">Über uns</a>
+                <a href="#" class="nav-link hover:text-clubaccent transition">Kontakt</a>
+            </div>
+
+            <button id="burger-btn" class="text-3xl focus:outline-none hover:text-clubaccent transition transform hover:scale-110 drop-shadow-md cursor-pointer">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- VOLLBILD MENÜ -->
+<div id="fullscreen-menu" class="closed fixed inset-0 z-[60] bg-clubdark/50 backdrop-blur-md text-white flex flex-col overflow-hidden">
+    <div class="absolute -right-20 -bottom-20 opacity-10 pointer-events-none">
+         <img src="images/logo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/6964/6964037.png'" class="w-[600px] h-auto grayscale">
+    </div>
+    <button id="close-menu-btn" class="absolute top-8 right-8 text-4xl text-white/80 hover:text-clubaccent transition hover:rotate-90 z-20 cursor-pointer">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="container mx-auto px-6 h-full flex flex-col justify-center relative z-10">
+        <div class="grid lg:grid-cols-12 gap-12 h-3/4 items-center">
+            <div class="lg:col-span-7 space-y-6 border-l-4 border-clubaccent pl-8">
+                <span class="block text-clubaccent font-bold tracking-widest uppercase text-sm mb-4">Navigation</span>
+                <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Aktuelles</a></div>
+                <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Veranstaltungen</a></div>
+                <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Unsere Gruppen</a></div>
+                <div><a href="#" class="big-nav-link text-4xl md:text-6xl font-black text-white transition-colors duration-300">Über uns</a></div>
+            </div>
+            <div class="lg:col-span-5 flex flex-col gap-12 text-lg font-light text-blue-100">
+                <div>
+                    <h4 class="text-white font-bold text-xl mb-6 border-b border-white/20 pb-2">Vereinsleben</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-camera mr-2 opacity-70"></i> Galerie</a></li>
+                        <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-road mr-2 opacity-70"></i> Eigene Umzüge</a></li>
+                        <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-handshake mr-2 opacity-70"></i> Sponsoren & Partner</a></li>
+                        <li><a href="#" class="menu-link hover:text-white transition"><i class="fa-solid fa-users mr-2 opacity-70"></i> Befreundete Vereine</a></li>
+                        <li class="pt-4"><a href="#" class="inline-block bg-clubaccent text-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-clubaccent transition-all duration-300 shadow-lg border border-transparent hover:border-clubaccent w-full text-center"><i class="fa-solid fa-envelope mr-2"></i> Kontakt aufnehmen</a></li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/10">
+                    <h4 class="text-white font-bold mb-2">Für Mitglieder</h4>
+                    <p class="text-sm text-blue-200 mb-4">Zugang zu internen Dokumenten und Terminen.</p>
+                    <a href="#" class="inline-flex items-center justify-center w-full bg-clubaccent hover:bg-orange-500 text-white font-bold py-3 px-4 rounded transition shadow-lg transform hover:-translate-y-1"><i class="fa-solid fa-lock mr-2"></i> Zum Mitgliederbereich</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
