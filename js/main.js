@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (basePath) adjustLinks('footer-placeholder', basePath);
     });
 
-    // 3. Slider starten (nur wenn Container da ist)
+    // 3. Slider starten (nur wenn Container da ist, z.B. auf der Startseite)
     if (document.getElementById('news-container')) {
         initSlider();
     }
@@ -54,20 +54,16 @@ function highlightActiveLink() {
 
     const links = header.querySelectorAll('a.nav-link, a.big-nav-link');
     links.forEach(link => {
-        // Einfache Logik: Wenn der Linktext im Seitentitel vorkommt
-        // z.B. Link "Unsere Gruppen" passt zu Title "Unsere Gruppen | GroKaGe"
         if (title.includes(link.textContent.trim()) && link.textContent.trim() !== '') {
             link.classList.add('text-clubaccent', 'font-bold');
-            link.classList.remove('text-white'); // Farbe überschreiben
+            link.classList.remove('text-white'); 
             
-            // Für Desktop (Unterstrich)
             if (link.classList.contains('nav-link')) {
                 link.style.borderBottom = "2px solid #FF8C00";
             }
         }
     });
 }
-
 
 // --- HELFER: Komponente laden ---
 async function loadComponent(elementId, filePath, callback) {
@@ -122,11 +118,11 @@ window.openGroupModal = function(groupId) {
     document.getElementById('modal-betreuer').textContent = data.betreuer;
     document.getElementById('modal-trainer').textContent = data.trainer;
     
-    // PFAD LOGIK: BasePath davor hängen, damit Bild gefunden wird
+    // PFAD LOGIK: BasePath davor hängen
     const basePath = window.basePath || '';
     const imgEl = document.getElementById('modal-img');
     
-    // Fallback falls Bild nicht existiert
+    // Fallback
     imgEl.onerror = function() {
         this.onerror = null; 
         this.src = 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=600&auto=format&fit=crop';
@@ -162,7 +158,7 @@ window.closeGroupModal = function() {
 };
 
 
-// --- RESTLICHE FUNKTIONEN (Slider etc.) ---
+// --- RESTLICHE FUNKTIONEN (Toggle, Kalender, Menü, Scroll) ---
 function toggleEvent(detailsId, iconId) {
     const details = document.getElementById(detailsId);
     const icon = document.getElementById(iconId);
@@ -240,11 +236,29 @@ function setupScrollEffect() {
     }
 }
 
-// Slider Code wie gehabt...
+// --- NEUER FLYER SLIDER (HOCHKANT) ---
 const newsData = [
-    { id: 1, title: "Ticketvorverkauf gestartet!", text: "Sichert euch jetzt die besten Plätze für unsere große Prunksitzung.", image: "https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=2670&auto=format&fit=crop", date: "Heute" },
-    { id: 2, title: "Rückblick Ordensball", text: "Was für ein Abend! Ein dreifach donnerndes Helau auf unsere Geehrten.", image: "https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=2670&auto=format&fit=crop", date: "Gestern" },
-    { id: 3, title: "Die Garden sind bereit", text: "Unsere Mädels haben hart trainiert. Seid gespannt auf die neuen Tänze!", image: "https://images.unsplash.com/photo-1563529369327-023a1a3641b5?q=80&w=2670&auto=format&fit=crop", date: "20. Okt" }
+    { 
+        id: 1, 
+        title: "Prunksitzung 2025", 
+        text: "Der offizielle Flyer zur Prunksitzung.", 
+        image: "images/flyer/flyer1.png", 
+        date: "Neu" 
+    },
+    { 
+        id: 2, 
+        title: "Kinderfasching", 
+        text: "Alle Infos für unsere kleinen Narren.", 
+        image: "images/flyer/flyer2.png", 
+        date: "Info" 
+    },
+    { 
+        id: 3, 
+        title: "Großer Umzug", 
+        text: "Streckenverlauf und Aufstellung.", 
+        image: "images/flyer/flyer3.png", 
+        date: "Wichtig" 
+    }
 ];
 
 function initSlider() {
@@ -258,19 +272,25 @@ function initSlider() {
     function renderSlide(index) {
         container.innerHTML = '';
         const news = newsData[index];
+        const basePath = window.basePath || ''; // Pfadkorrektur für Unterordner
+
         const slideHTML = `
-            <div class="absolute inset-0 p-3 flex flex-col h-full animate-slide">
-                <div class="h-40 w-full rounded-lg overflow-hidden relative mb-3 shadow-md group">
-                    <img src="${news.image}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+            <div class="absolute inset-0 p-2 flex flex-col h-full animate-slide">
+                <!-- Bild Container: Hochkant für Flyer -->
+                <div class="h-3/4 w-full rounded-xl overflow-hidden relative mb-3 shadow-md group border border-gray-100 bg-gray-100">
+                    <img src="${basePath + news.image}" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600&auto=format&fit=crop'"
+                         class="w-full h-full object-cover object-top transform group-hover:scale-105 transition duration-700"
+                         alt="${news.title}">
                     <span class="absolute top-2 right-2 bg-[#0E3CA0] text-white text-xs font-bold px-2 py-1 rounded shadow border border-white/20">${news.date}</span>
                 </div>
-                <div class="flex-1 flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-lg leading-tight mb-2 text-gray-900">${news.title}</h4>
-                        <p class="text-sm text-gray-600 line-clamp-3">${news.text}</p>
-                    </div>
-                    <a href="#" class="text-xs font-bold uppercase tracking-wide text-[#0E3CA0] hover:text-blue-800 mt-2 flex items-center gap-1">
-                        Weiterlesen <i class="fa-solid fa-arrow-right"></i>
+                
+                <!-- Text Bereich -->
+                <div class="flex-1 flex flex-col justify-start">
+                    <h4 class="font-bold text-lg leading-tight mb-1 text-gray-900 line-clamp-1">${news.title}</h4>
+                    <p class="text-sm text-gray-600 line-clamp-2 leading-snug mb-2">${news.text}</p>
+                    <a href="#" class="text-xs font-bold uppercase tracking-wide text-[#0E3CA0] hover:text-blue-800 flex items-center gap-1 mt-auto">
+                        Flyer öffnen <i class="fa-solid fa-expand"></i>
                     </a>
                 </div>
             </div>
