@@ -77,7 +77,7 @@ function initSlider(imagesList) {
         const imgData = imagesList[index % imagesList.length];
         const imgSrc = imgData.src;
 
-        // CLEAN DESIGN: Jetzt mit object-cover und scale für Zoom-Effekt
+        // CLEAN DESIGN: Jetzt mit object-cover und STARKEM scale für Zoom-Effekt
         const slideHTML = `
             <div class="absolute inset-0 w-full h-full animate-fade-in flex items-center justify-center bg-gray-50">
                 <!-- Unscharfer Background -->
@@ -85,9 +85,9 @@ function initSlider(imagesList) {
                      style="background-image: url('${imgSrc}');">
                 </div>
                 
-                <!-- Das Bild: object-cover füllt alles aus, scale-105 zoomt leicht rein -->
+                <!-- Das Bild: object-cover füllt alles aus, scale-115 zoomt stark rein -->
                 <img src="${imgSrc}" 
-                     class="relative z-10 w-full h-full object-cover scale-[1.03] transform transition duration-700 hover:scale-[1.08]"
+                     class="relative z-10 w-full h-full object-cover scale-[1.15] transform transition duration-700 hover:scale-[1.25]"
                      alt="Flyer">
                      
                 <!-- Zoom Icon -->
