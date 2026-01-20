@@ -60,37 +60,36 @@
                 </p>
             </div>
 
-            <!-- Rechte Seite: FLYER SLIDER (CLEAN & MODERN) -->
+            <!-- Rechte Seite: FLYER SLIDER (CLEAN DESIGN) -->
             <div class="flex justify-center md:justify-end">
-                <div class="relative w-full max-w-sm group">
+                <div class="relative w-full max-w-[340px] group">
                     
-                    <!-- Weicher Glow im Hintergrund -->
-                    <div class="absolute -inset-4 bg-gradient-to-tr from-club/60 to-clubaccent/60 rounded-[3rem] blur-2xl opacity-60 group-hover:opacity-80 transition duration-1000"></div>
+                    <!-- Subtiler Glow hinter dem Bild (kein dicker Rahmen mehr) -->
+                    <div class="absolute -inset-1 bg-gradient-to-b from-club/50 to-clubaccent/50 rounded-[2.2rem] blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
                     
-                    <!-- Der "Phone" Rahmen -->
-                    <div class="relative bg-white rounded-[2.5rem] p-3 shadow-2xl border border-white/50 backdrop-blur-xl transition-transform duration-500 hover:scale-[1.01]">
+                    <!-- Der Bild-Container: Randlos, perfektes Seitenverhältnis -->
+                    <div class="relative w-full aspect-[1414/1999] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 bg-gray-900">
                         
-                        <!-- Screen / Bildbereich (Abgerundet, damit Bild perfekt reinpasst) -->
-                        <div id="news-container" class="relative w-full aspect-[1414/1999] rounded-[2rem] overflow-hidden bg-gray-100 shadow-inner">
+                        <!-- Slider Inhalt -->
+                        <div id="news-container" class="w-full h-full">
                             <!-- Bilder werden hier per JS eingefügt -->
                         </div>
                         
-                        <!-- Navigation Pfeile (Schweben seitlich, nur bei Hover sichtbar) -->
-                        <div class="absolute top-1/2 -translate-y-1/2 -left-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
-                             <button id="prevBtn" class="pointer-events-auto w-12 h-12 bg-white text-club rounded-full shadow-lg flex items-center justify-center hover:bg-club hover:text-white transition-colors">
-                                <i class="fa-solid fa-chevron-left text-lg"></i>
+                        <!-- Navigation Pfeile (Schweben seitlich) -->
+                        <div class="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
+                             <!-- Links -->
+                             <button id="prevBtn" class="pointer-events-auto w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-club rounded-full backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <!-- Rechts -->
+                            <button id="nextBtn" class="pointer-events-auto w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-club rounded-full backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+                                <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
-                        <div class="absolute top-1/2 -translate-y-1/2 -right-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-x-4 group-hover:translate-x-0">
-                            <button id="nextBtn" class="pointer-events-auto w-12 h-12 bg-white text-club rounded-full shadow-lg flex items-center justify-center hover:bg-club hover:text-white transition-colors">
-                                <i class="fa-solid fa-chevron-right text-lg"></i>
-                            </button>
-                       </div>
-
                     </div>
 
-                    <!-- Dots (Punkte) jetzt AUSSERHALB und clean -->
-                    <div id="dots-container" class="flex justify-center gap-2 mt-6">
+                    <!-- Dots (Punkte) Dezent unter dem Bild -->
+                    <div id="dots-container" class="flex justify-center gap-2 mt-5">
                         <!-- Dots werden hier generiert -->
                     </div>
                 </div>
