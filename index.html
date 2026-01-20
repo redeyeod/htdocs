@@ -60,40 +60,38 @@
                 </p>
             </div>
 
-            <!-- Rechte Seite: FLYER SLIDER (MODERN & RANDLOS) -->
+            <!-- Rechte Seite: FLYER SLIDER (NEU: Fine Glass Look) -->
             <div class="flex justify-center md:justify-end">
                 <div class="relative w-full max-w-[340px] group">
                     
-                    <!-- Dezenter Schatten hinter dem Bild -->
-                    <div class="absolute -inset-2 bg-black/40 rounded-[2.5rem] blur-xl transform translate-y-4"></div>
+                    <!-- 1. Sanfter Glow hinter dem Flyer (modern & dezent) -->
+                    <div class="absolute -inset-1 bg-gradient-to-b from-club to-clubaccent rounded-[2.5rem] blur-md opacity-40 group-hover:opacity-60 transition duration-700"></div>
                     
-                    <!-- Der Bild-Container: Randlos, perfektes Seitenverhältnis, abgerundete Ecken -->
-                    <!-- border-2 border-white/20 sorgt für eine feine, edle Glaskante -->
-                    <div class="relative w-full aspect-[1414/1999] rounded-[2rem] overflow-hidden bg-gray-900 border-2 border-white/20 ring-1 ring-black/10">
+                    <!-- 2. Der Container: Feine weiße Linie, perfekt abgerundet -->
+                    <!-- aspect-[1414/1999] sorgt für das exakte Flyer-Format -->
+                    <div class="relative w-full aspect-[1414/1999] bg-gray-900 rounded-[2.5rem] overflow-hidden border border-white/30 shadow-2xl backdrop-blur-sm ring-1 ring-black/10">
                         
-                        <!-- Slider Inhalt -->
-                        <!-- Der Trick [&_a[title='Vergrößern']]:hidden blendet den Zoom-Button aus der main.js aus -->
-                        <div id="news-container" class="w-full h-full [&_a[title='Vergrößern']]:hidden">
-                            <!-- Bilder werden hier per JS eingefügt -->
+                        <!-- Slider Inhalt (Bilder) -->
+                        <div id="news-container" class="w-full h-full">
+                            <!-- JS füllt das hier -->
                         </div>
                         
-                        <!-- Navigation Pfeile (Immer sichtbar, aber dezent) -->
-                        <div class="absolute inset-0 flex items-center justify-between px-3 pointer-events-none z-50">
-                             <!-- Links -->
-                             <button id="prevBtn" class="pointer-events-auto w-10 h-10 bg-black/30 hover:bg-club/90 text-white rounded-full backdrop-blur-md flex items-center justify-center transition-all shadow-lg border border-white/20">
+                        <!-- Navigation Pfeile (Schweben seitlich, blenden bei Hover ein) -->
+                        <div class="absolute inset-0 flex items-center justify-between px-2 pointer-events-none z-20">
+                             <button id="prevBtn" class="pointer-events-auto w-10 h-10 bg-white/10 hover:bg-white/90 text-white hover:text-club rounded-full backdrop-blur-md border border-white/10 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 shadow-lg">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
-                            <!-- Rechts -->
-                            <button id="nextBtn" class="pointer-events-auto w-10 h-10 bg-black/30 hover:bg-club/90 text-white rounded-full backdrop-blur-md flex items-center justify-center transition-all shadow-lg border border-white/20">
+                            <button id="nextBtn" class="pointer-events-auto w-10 h-10 bg-white/10 hover:bg-white/90 text-white hover:text-club rounded-full backdrop-blur-md border border-white/10 flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 shadow-lg">
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Dots (Punkte) deutlich unter dem Bild -->
-                    <div id="dots-container" class="flex justify-center gap-2 mt-8 z-50">
+                    <!-- 3. Dots: Jetzt UNTERHALB des Rahmens -->
+                    <div id="dots-container" class="flex justify-center gap-2 mt-6">
                         <!-- Dots werden hier generiert -->
                     </div>
+
                 </div>
             </div>
         </div>
@@ -125,10 +123,16 @@
                         Prinzessin Melanie
                     </h3>
                     <div class="w-24 h-1 bg-club rounded mx-auto md:mx-0"></div>
-                    <p class="text-lg text-gray-700 leading-relaxed font-medium">Mit einem dreifach donnernden Helau führen <strong>Mario Bogner</strong> und <strong>Melanie Franke</strong> unser Narrenschiff durch die Kampagne 2025/2026!</p>
-                    <p class="text-gray-600 leading-relaxed">Freut euch auf eine unvergessliche Zeit voller Frohsinn, Tanz und Tradition. Unser Prinzenpaar regiert mit Herz und Charme und lädt euch herzlich ein, gemeinsam mit uns die fünfte Jahreszeit zu feiern.</p>
+                    <p class="text-lg text-gray-700 leading-relaxed font-medium">
+                        Mit einem dreifach donnernden Helau führen <strong>Mario Bogner</strong> und <strong>Melanie Franke</strong> unser Narrenschiff durch die Kampagne 2025/2026! 
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Freut euch auf eine unvergessliche Zeit voller Frohsinn, Tanz und Tradition. Unser Prinzenpaar regiert mit Herz und Charme und lädt euch herzlich ein, gemeinsam mit uns die fünfte Jahreszeit zu feiern.
+                    </p>
                     <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="#" class="inline-flex items-center justify-center px-8 py-3 bg-club text-white font-bold rounded-lg shadow-lg hover:bg-clubdark transition transform hover:-translate-y-1">Grußwort lesen</a>
+                        <a href="#" class="inline-flex items-center justify-center px-8 py-3 bg-club text-white font-bold rounded-lg shadow-lg hover:bg-clubdark transition transform hover:-translate-y-1">
+                            Grußwort lesen
+                        </a>
                     </div>
                 </div>
             </div>
