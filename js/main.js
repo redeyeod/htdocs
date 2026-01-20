@@ -4,33 +4,29 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Basis-Pfad bestimmen (falls nicht gesetzt, ist er leer)
+    // Basis-Pfad bestimmen
     const basePath = window.basePath || ''; 
 
     // 1. Header laden
     loadComponent('header-placeholder', basePath + 'header.html', () => {
-        // Wenn wir in einem Unterordner sind, müssen Links im Header angepasst werden
         if (basePath) adjustLinks('header-placeholder', basePath);
-        
-        // Aktiven Link markieren
         highlightActiveLink();
-
         setupMobileMenu();
         setupScrollEffect();
     });
 
-    // 2. Footer laden (Enthält jetzt auch das Gruppen-Modal!)
+    // 2. Footer laden
     loadComponent('footer-placeholder', basePath + 'footer.html', () => {
         if (basePath) adjustLinks('footer-placeholder', basePath);
     });
 
-    // 3. Slider starten (nur wenn Container da ist, z.B. auf der Startseite)
+    // 3. Slider starten
     if (document.getElementById('news-container')) {
         initSlider();
     }
 });
 
-// --- HELFER: Links in nachgeladenen Komponenten anpassen ---
+// --- HELFER: Links anpassen ---
 function adjustLinks(containerId, basePath) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -39,16 +35,15 @@ function adjustLinks(containerId, basePath) {
     elements.forEach(el => {
         const attr = el.tagName === 'IMG' ? 'src' : 'href';
         const val = el.getAttribute(attr);
-        // Nur relative Pfade anpassen, keine externen Links oder Anker/Mail
         if (val && !val.startsWith('http') && !val.startsWith('//') && !val.startsWith('#') && !val.startsWith('mailto')) {
             el.setAttribute(attr, basePath + val);
         }
     });
 }
 
-// --- HELFER: Aktiven Link im Menü markieren ---
+// --- HELFER: Aktiven Link markieren ---
 function highlightActiveLink() {
-    const title = document.title; // Titel der aktuellen Seite
+    const title = document.title;
     const header = document.getElementById('navbar');
     if(!header) return;
 
@@ -57,7 +52,6 @@ function highlightActiveLink() {
         if (title.includes(link.textContent.trim()) && link.textContent.trim() !== '') {
             link.classList.add('text-clubaccent', 'font-bold');
             link.classList.remove('text-white'); 
-            
             if (link.classList.contains('nav-link')) {
                 link.style.borderBottom = "2px solid #FF8C00";
             }
@@ -81,7 +75,7 @@ async function loadComponent(elementId, filePath, callback) {
     }
 }
 
-// --- GRUPPEN DATEN & MODAL LOGIK (ZENTRALISIERT) ---
+// --- GRUPPEN DATEN (unverändert) ---
 const groupsData = {
     'storchengarde': { title: 'Storchengarde', subtitle: 'Das Aushängeschild', img: 'images/storchengarde.png', desc: 'Unsere Storchengarde repräsentiert den Verein auf zahlreichen Turnieren und Veranstaltungen. Mit Disziplin und Leidenschaft trainieren sie das ganze Jahr für den perfekten Marsch.', betreuer: 'Anna Müller, Lisa Schmidt', trainer: 'Julia Wagner', contact: 'storchengarde@grokage-malsch.de' },
     'jugendgarde': { title: 'Jugendgarde', subtitle: 'Die Nachwuchstalente', img: 'images/jugendgarde.png', desc: 'In der Jugendgarde werden die Schritte anspruchsvoller. Hier wachsen die Talente von morgen heran und begeistern mit ihrem Können.', betreuer: 'Sarah Weber', trainer: 'Marie Klein', contact: 'jugendgarde@grokage-malsch.de' },
@@ -104,12 +98,11 @@ const groupsData = {
     'kuechenteam': { title: 'Küchenteam', subtitle: 'Verpflegung', img: 'images/kuechenteam.png', desc: 'Sorgen dafür, dass niemand hungrig bleibt.', betreuer: 'Küchenchef', trainer: '-', contact: 'kueche@grokage-malsch.de' }
 };
 
-// Global verfügbar machen (window.openGroupModal), damit HTML onclicks funktionieren
+// Global für HTML onclicks
 window.openGroupModal = function(groupId) {
     const modal = document.getElementById('group-modal');
     const content = document.getElementById('group-modal-content');
     const data = groupsData[groupId];
-
     if(!data || !modal) return;
 
     document.getElementById('modal-title').textContent = data.title;
@@ -118,11 +111,8 @@ window.openGroupModal = function(groupId) {
     document.getElementById('modal-betreuer').textContent = data.betreuer;
     document.getElementById('modal-trainer').textContent = data.trainer;
     
-    // PFAD LOGIK: BasePath davor hängen
     const basePath = window.basePath || '';
     const imgEl = document.getElementById('modal-img');
-    
-    // Fallback
     imgEl.onerror = function() {
         this.onerror = null; 
         this.src = 'https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=600&auto=format&fit=crop';
@@ -135,7 +125,6 @@ window.openGroupModal = function(groupId) {
 
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-
     setTimeout(() => {
         content.classList.remove('scale-95', 'opacity-0');
         content.classList.add('scale-100', 'opacity-100');
@@ -145,24 +134,19 @@ window.openGroupModal = function(groupId) {
 window.closeGroupModal = function() {
     const modal = document.getElementById('group-modal');
     const content = document.getElementById('group-modal-content');
-    
     if(!modal || !content) return;
-
     content.classList.remove('scale-100', 'opacity-100');
     content.classList.add('scale-95', 'opacity-0');
-
     setTimeout(() => {
         modal.classList.add('hidden');
         document.body.style.overflow = '';
     }, 300);
 };
 
-
-// --- RESTLICHE FUNKTIONEN (Toggle, Kalender, Menü, Scroll) ---
+// --- FUNKTIONEN ---
 function toggleEvent(detailsId, iconId) {
     const details = document.getElementById(detailsId);
     const icon = document.getElementById(iconId);
-    
     if (details && details.classList.contains('hidden')) {
         details.classList.remove('hidden');
         if(icon) icon.style.transform = 'rotate(180deg)';
@@ -186,7 +170,6 @@ LOCATION:${location}
 DESCRIPTION:${description}
 END:VEVENT
 END:VCALENDAR`;
-
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
@@ -200,28 +183,23 @@ function setupMobileMenu() {
     const btn = document.getElementById('burger-btn');
     const closeBtn = document.getElementById('close-menu-btn');
     const menu = document.getElementById('fullscreen-menu');
-    
     if(!btn || !closeBtn || !menu) return;
-
     function openMenu() {
         menu.classList.remove('closed');
         menu.classList.add('open');
         document.body.style.overflow = 'hidden'; 
     }
-
     function closeMenu() {
         menu.classList.remove('open');
         menu.classList.add('closed');
         document.body.style.overflow = '';
     }
-
     btn.addEventListener('click', openMenu);
     closeBtn.addEventListener('click', closeMenu);
 }
 
 function setupScrollEffect() {
     const navbar = document.getElementById('navbar');
-    
     if(navbar) {
         const updateHeader = () => {
             if (window.scrollY > 50) {
@@ -230,7 +208,6 @@ function setupScrollEffect() {
                 navbar.classList.remove('nav-scrolled');
             }
         };
-
         window.addEventListener('scroll', updateHeader);
         updateHeader(); 
     }
@@ -272,11 +249,12 @@ function initSlider() {
     function renderSlide(index) {
         container.innerHTML = '';
         const news = newsData[index];
-        const basePath = window.basePath || ''; // Pfadkorrektur für Unterordner
+        const basePath = window.basePath || ''; 
 
+        // ANGEPASST FÜR HOCHKANT (Flyer-Format)
         const slideHTML = `
             <div class="absolute inset-0 p-2 flex flex-col h-full animate-slide">
-                <!-- Bild Container: Hochkant für Flyer -->
+                <!-- Bild Container: Hochkant (75% Höhe) -->
                 <div class="h-3/4 w-full rounded-xl overflow-hidden relative mb-3 shadow-md group border border-gray-100 bg-gray-100">
                     <img src="${basePath + news.image}" 
                          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600&auto=format&fit=crop'"
@@ -285,7 +263,7 @@ function initSlider() {
                     <span class="absolute top-2 right-2 bg-[#0E3CA0] text-white text-xs font-bold px-2 py-1 rounded shadow border border-white/20">${news.date}</span>
                 </div>
                 
-                <!-- Text Bereich -->
+                <!-- Text Bereich: Kompakt unten -->
                 <div class="flex-1 flex flex-col justify-start">
                     <h4 class="font-bold text-lg leading-tight mb-1 text-gray-900 line-clamp-1">${news.title}</h4>
                     <p class="text-sm text-gray-600 line-clamp-2 leading-snug mb-2">${news.text}</p>
