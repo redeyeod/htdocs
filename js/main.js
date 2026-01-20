@@ -3,7 +3,6 @@
  */
 
 // --- KONFIGURATION FÜR FLYER ---
-// Hier sind deine aktuellen Flyer eingetragen:
 const manualFlyers = [
     "narrenfahrplan_25_26.jpg",
     "prunksitzungen_2026.png",
@@ -15,74 +14,47 @@ const manualFlyers = [
 
 document.addEventListener("DOMContentLoaded", function() {
     const basePath = window.basePath || ''; 
-
-    // 1. Header laden
     loadComponent('header-placeholder', basePath + 'header.html', () => {
         if (basePath) adjustLinks('header-placeholder', basePath);
         highlightActiveLink();
         setupMobileMenu();
         setupScrollEffect();
     });
-
-    // 2. Footer laden
     loadComponent('footer-placeholder', basePath + 'footer.html', () => {
         if (basePath) adjustLinks('footer-placeholder', basePath);
     });
-
-    // 3. Slider starten (Bilder laden)
     if (document.getElementById('news-container')) {
         loadFlyersAndStartSlider();
     }
 });
 
-// --- FLYER LADE LOGIK ---
 async function loadFlyersAndStartSlider() {
     const basePath = window.basePath || ''; 
     const folder = basePath + "images/flyer/";
     let validImages = [];
 
-    // OPTION A: Manuelle Liste nutzen
     if (manualFlyers.length > 0) {
-        console.log("Nutze manuelle Flyer-Liste:", manualFlyers);
-        // Wir bauen die Pfade zusammen
         validImages = manualFlyers.map((filename, index) => ({
             src: folder + filename,
             id: index
         }));
-    } 
-    // OPTION B: Automatisch Scannen (Fallback)
-    else {
-        console.log("Scanne nach flyer1 bis flyer10...");
+    } else {
         const maxScan = 10; 
         const checkPromises = [];
-
         for (let i = 1; i <= maxScan; i++) {
-            checkPromises.push(checkImageExists(folder + `flyer${i}.jpg`).then(exists => {
-                if (exists) validImages.push({ src: folder + `flyer${i}.jpg`, id: i });
-            }));
-            checkPromises.push(checkImageExists(folder + `flyer${i}.png`).then(exists => {
-                if (exists) validImages.push({ src: folder + `flyer${i}.png`, id: i });
-            }));
-             checkPromises.push(checkImageExists(folder + `flyer${i}.jpeg`).then(exists => {
-                if (exists) validImages.push({ src: folder + `flyer${i}.jpeg`, id: i });
-            }));
+            checkPromises.push(checkImageExists(folder + `flyer${i}.jpg`).then(exists => { if (exists) validImages.push({ src: folder + `flyer${i}.jpg`, id: i }); }));
+            checkPromises.push(checkImageExists(folder + `flyer${i}.png`).then(exists => { if (exists) validImages.push({ src: folder + `flyer${i}.png`, id: i }); }));
+            checkPromises.push(checkImageExists(folder + `flyer${i}.jpeg`).then(exists => { if (exists) validImages.push({ src: folder + `flyer${i}.jpeg`, id: i }); }));
         }
-
         await Promise.all(checkPromises);
         validImages.sort((a, b) => a.id - b.id);
     }
-
-    // Fallback, wenn gar nichts gefunden wurde
     if (validImages.length === 0) {
-        console.warn("Keine Flyer gefunden. Zeige Demo-Bild.");
         validImages.push({ src: "https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=600&auto=format&fit=crop" });
     }
-
-    // Slider starten
     initSlider(validImages);
 }
 
-// Helfer: Prüft ob ein Bild existiert
 function checkImageExists(url) {
     return new Promise((resolve) => {
         const img = new Image();
@@ -92,7 +64,6 @@ function checkImageExists(url) {
     });
 }
 
-// --- SLIDER LOGIK ---
 function initSlider(imagesList) {
     const container = document.getElementById('news-container');
     const dotsContainer = document.getElementById('dots-container');
@@ -103,25 +74,24 @@ function initSlider(imagesList) {
 
     function renderSlide(index) {
         container.innerHTML = '';
-        
         const imgData = imagesList[index % imagesList.length];
         const imgSrc = imgData.src;
 
+        // CLEAN DESIGN: Jetzt mit object-cover und scale für Zoom-Effekt
         const slideHTML = `
-            <div class="absolute inset-0 w-full h-full animate-fade-in flex items-center justify-center bg-gray-100 overflow-hidden rounded-[1.5rem]">
-                
-                <!-- 1. Unscharfer Hintergrund -->
-                <div class="absolute inset-0 bg-cover bg-center blur-xl opacity-50 scale-110" 
+            <div class="absolute inset-0 w-full h-full animate-fade-in flex items-center justify-center bg-gray-50">
+                <!-- Unscharfer Background -->
+                <div class="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-110" 
                      style="background-image: url('${imgSrc}');">
                 </div>
                 
-                <!-- 2. Das scharfe Bild -->
+                <!-- Das Bild: object-cover füllt alles aus, scale-105 zoomt leicht rein -->
                 <img src="${imgSrc}" 
-                     class="relative z-10 w-full h-full object-contain p-1 transform transition duration-500 hover:scale-[1.02]"
+                     class="relative z-10 w-full h-full object-cover scale-[1.03] transform transition duration-700 hover:scale-[1.08]"
                      alt="Flyer">
                      
-                <!-- Zoom Button -->
-                <a href="${imgSrc}" target="_blank" class="absolute bottom-6 right-6 bg-white/90 hover:bg-white text-club p-3 rounded-full shadow-xl z-20 transition transform hover:scale-110 hover:rotate-90" title="Vergrößern">
+                <!-- Zoom Icon -->
+                <a href="${imgSrc}" target="_blank" class="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-club p-3 rounded-full shadow-xl z-20 transition transform hover:scale-110 hover:rotate-90 pointer-events-auto" title="Vergrößern">
                     <i class="fa-solid fa-expand text-xl"></i>
                 </a>
             </div>
@@ -133,14 +103,12 @@ function initSlider(imagesList) {
     function updateDots(index) {
         if(!dotsContainer) return;
         dotsContainer.innerHTML = '';
-        
         if(imagesList.length <= 1) return;
-
-        const displayCount = Math.min(imagesList.length, 10);
         
+        const displayCount = Math.min(imagesList.length, 10);
         for(let i=0; i < displayCount; i++) {
             const dot = document.createElement('button');
-            dot.className = `h-2 rounded-full transition-all duration-300 shadow-sm ${i === index ? 'bg-[#0E3CA0] w-8' : 'bg-gray-300 w-2 hover:bg-gray-400'}`;
+            dot.className = `h-2 rounded-full transition-all duration-300 shadow-sm ${i === index ? 'bg-white w-8 opacity-100' : 'bg-white/40 w-2 hover:bg-white/70'}`;
             dot.onclick = () => { currentSlide = i; renderSlide(i); resetTimer(); };
             dotsContainer.appendChild(dot);
         }
@@ -160,10 +128,8 @@ function initSlider(imagesList) {
     if(imagesList.length > 1) {
         if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetTimer(); });
         if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetTimer(); });
-        // Pfeile sichtbar machen
         if(nextBtn && nextBtn.parentElement) nextBtn.parentElement.style.display = 'flex';
     } else {
-        // Pfeile ausblenden wenn nur 1 Bild
         if(nextBtn && nextBtn.parentElement) nextBtn.parentElement.style.display = 'none';
     }
 
@@ -171,9 +137,7 @@ function initSlider(imagesList) {
     resetTimer();
 }
 
-
-// --- RESTLICHE HELFER (Links, Menü, Scroll etc.) ---
-
+// --- HELFER & REST (Unverändert) ---
 function adjustLinks(containerId, basePath) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -186,7 +150,6 @@ function adjustLinks(containerId, basePath) {
         }
     });
 }
-
 function highlightActiveLink() {
     const title = document.title;
     const header = document.getElementById('navbar');
@@ -202,7 +165,6 @@ function highlightActiveLink() {
         }
     });
 }
-
 async function loadComponent(elementId, filePath, callback) {
     const element = document.getElementById(elementId);
     if (!element) return;
@@ -216,14 +178,8 @@ async function loadComponent(elementId, filePath, callback) {
         console.error(`Fehler beim Laden von ${filePath}:`, error);
     }
 }
-
-// Global functions for HTML access
-window.openGroupModal = function(groupId) { /* Modal Logik wird bei Bedarf hierher kopiert oder aus HTML genutzt */ 
-    // Hier nur der Stub, falls es in gruppen/index.html inline ist.
-    // Wenn du es zentral willst, sag Bescheid!
-};
-window.closeGroupModal = function() { };
-
+window.openGroupModal = function(groupId) { /* ... */ };
+window.closeGroupModal = function() { /* ... */ };
 function toggleEvent(detailsId, iconId) {
     const details = document.getElementById(detailsId);
     const icon = document.getElementById(iconId);
@@ -235,7 +191,6 @@ function toggleEvent(detailsId, iconId) {
         if(icon) icon.style.transform = 'rotate(0deg)';
     }
 }
-
 function downloadCalendarEvent(title, startDate, endDate, location, description) {
     const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -258,27 +213,16 @@ END:VCALENDAR`;
     link.click();
     document.body.removeChild(link);
 }
-
 function setupMobileMenu() {
     const btn = document.getElementById('burger-btn');
     const closeBtn = document.getElementById('close-menu-btn');
     const menu = document.getElementById('fullscreen-menu');
     if(!btn || !closeBtn || !menu) return;
-
-    function openMenu() {
-        menu.classList.remove('closed');
-        menu.classList.add('open');
-        document.body.style.overflow = 'hidden'; 
-    }
-    function closeMenu() {
-        menu.classList.remove('open');
-        menu.classList.add('closed');
-        document.body.style.overflow = '';
-    }
+    function openMenu() { menu.classList.remove('closed'); menu.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { menu.classList.remove('open'); menu.classList.add('closed'); document.body.style.overflow = ''; }
     btn.addEventListener('click', openMenu);
     closeBtn.addEventListener('click', closeMenu);
 }
-
 function setupScrollEffect() {
     const navbar = document.getElementById('navbar');
     if(navbar) {
@@ -293,4 +237,3 @@ function setupScrollEffect() {
         updateHeader(); 
     }
 }
-
