@@ -7,7 +7,7 @@
 const manualFlyers = [
     "narrenfahrplan_25_26.jpg",
     "prunksitzungen_2026.png",
-    "generationssitzung_2026.png",
+    "generationensitzung_2026.png",
     "schmudoparty_im_narrennest_2026.png",
     "naerrisches_strassentreiben_2026.png",
     "kinderfasching_2026.png"
@@ -293,3 +293,4 @@ function setupScrollEffect() {
         updateHeader(); 
     }
 }
+
