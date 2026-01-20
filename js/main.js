@@ -87,7 +87,7 @@ function initSlider(imagesList) {
                 
                 <!-- Das Bild: object-cover füllt alles aus, scale-115 zoomt stark rein -->
                 <img src="${imgSrc}" 
-                     class="relative z-10 w-full h-full object-cover scale-[1.15] transform transition duration-700 hover:scale-[1.25]"
+                     class="relative z-10 w-full h-full object-cover scale-[1.05] transform transition duration-700 hover:scale-[1.15]"
                      alt="Flyer">
                      
                 <!-- Zoom Icon -->
@@ -237,3 +237,4 @@ function setupScrollEffect() {
         updateHeader(); 
     }
 }
+
