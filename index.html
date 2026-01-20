@@ -60,36 +60,38 @@
                 </p>
             </div>
 
-            <!-- Rechte Seite: FLYER SLIDER (CLEAN DESIGN) -->
+            <!-- Rechte Seite: FLYER SLIDER (MODERN & RANDLOS) -->
             <div class="flex justify-center md:justify-end">
                 <div class="relative w-full max-w-[340px] group">
                     
-                    <!-- Subtiler Glow hinter dem Bild (kein dicker Rahmen mehr) -->
-                    <div class="absolute -inset-1 bg-gradient-to-b from-club/50 to-clubaccent/50 rounded-[2.2rem] blur opacity-30 group-hover:opacity-60 transition duration-700"></div>
+                    <!-- Dezenter Schatten hinter dem Bild -->
+                    <div class="absolute -inset-2 bg-black/40 rounded-[2.5rem] blur-xl transform translate-y-4"></div>
                     
-                    <!-- Der Bild-Container: Randlos, perfektes Seitenverhältnis -->
-                    <div class="relative w-full aspect-[1414/1999] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 bg-gray-900">
+                    <!-- Der Bild-Container: Randlos, perfektes Seitenverhältnis, abgerundete Ecken -->
+                    <!-- border-2 border-white/20 sorgt für eine feine, edle Glaskante -->
+                    <div class="relative w-full aspect-[1414/1999] rounded-[2rem] overflow-hidden bg-gray-900 border-2 border-white/20 ring-1 ring-black/10">
                         
                         <!-- Slider Inhalt -->
-                        <div id="news-container" class="w-full h-full">
+                        <!-- Der Trick [&_a[title='Vergrößern']]:hidden blendet den Zoom-Button aus der main.js aus -->
+                        <div id="news-container" class="w-full h-full [&_a[title='Vergrößern']]:hidden">
                             <!-- Bilder werden hier per JS eingefügt -->
                         </div>
                         
-                        <!-- Navigation Pfeile (Schweben seitlich) -->
-                        <div class="absolute inset-0 flex items-center justify-between px-2 pointer-events-none">
+                        <!-- Navigation Pfeile (Immer sichtbar, aber dezent) -->
+                        <div class="absolute inset-0 flex items-center justify-between px-3 pointer-events-none z-50">
                              <!-- Links -->
-                             <button id="prevBtn" class="pointer-events-auto w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-club rounded-full backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0">
+                             <button id="prevBtn" class="pointer-events-auto w-10 h-10 bg-black/30 hover:bg-club/90 text-white rounded-full backdrop-blur-md flex items-center justify-center transition-all shadow-lg border border-white/20">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </button>
                             <!-- Rechts -->
-                            <button id="nextBtn" class="pointer-events-auto w-10 h-10 bg-white/20 hover:bg-white text-white hover:text-club rounded-full backdrop-blur-md flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+                            <button id="nextBtn" class="pointer-events-auto w-10 h-10 bg-black/30 hover:bg-club/90 text-white rounded-full backdrop-blur-md flex items-center justify-center transition-all shadow-lg border border-white/20">
                                 <i class="fa-solid fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Dots (Punkte) Dezent unter dem Bild -->
-                    <div id="dots-container" class="flex justify-center gap-2 mt-5">
+                    <!-- Dots (Punkte) deutlich unter dem Bild -->
+                    <div id="dots-container" class="flex justify-center gap-2 mt-8 z-50">
                         <!-- Dots werden hier generiert -->
                     </div>
                 </div>
