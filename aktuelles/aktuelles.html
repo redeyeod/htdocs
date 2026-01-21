@@ -27,6 +27,17 @@
     
     <!-- Dein Style (relative Pfade beachten!) -->
     <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        /* Versteckt die Scrollbar für die horizontale Galerie, lässt sie aber funktionstüchtig */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
@@ -36,7 +47,7 @@
     <!-- ================= HERO BEREICH ================= -->
     <section class="pt-40 pb-20 bg-clubdark relative overflow-hidden">
         <div class="absolute inset-0 opacity-20">
-             <img src="../images/hintergrund.png" class="w-full h-full object-cover grayscale">
+             <img src="../images/hintergrund.png" class="w-full h-full object-cover grayscale" onerror="this.style.display='none'">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-clubdark via-clubdark/90 to-gray-50"></div>
         
@@ -104,7 +115,8 @@
                     <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
                         <img src="../images/flyer/narrenfahrplan_25_26.jpg" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
                         <!-- Overlay -->
-                        <a href="../images/flyer/narrenfahrplan_25_26.jpg" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                        <!-- UPDATE: Onclick Event hinzugefügt, target=_blank entfernt -->
+                        <a href="#" onclick="openModal(event, '../images/flyer/narrenfahrplan_25_26.jpg')" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2 cursor-pointer">
                             <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
                             <span class="font-bold">Vergrößern</span>
                         </a>
@@ -116,7 +128,8 @@
                 <div class="min-w-[280px] md:min-w-[320px] snap-center">
                     <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
                         <img src="../images/flyer/kinderfasching_2026.png" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
-                        <a href="../images/flyer/kinderfasching_2026.png" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                        <!-- UPDATE: Onclick Event hinzugefügt -->
+                        <a href="#" onclick="openModal(event, '../images/flyer/kinderfasching_2026.png')" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2 cursor-pointer">
                             <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
                             <span class="font-bold">Vergrößern</span>
                         </a>
@@ -128,18 +141,21 @@
                 <div class="min-w-[280px] md:min-w-[320px] snap-center">
                     <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
                         <img src="../images/flyer/naerrisches_strassentreiben_2026.png" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
-                        <a href="../images/flyer/naerrisches_strassentreiben_2026.png" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                        <!-- UPDATE: Onclick Event hinzugefügt -->
+                        <a href="#" onclick="openModal(event, '../images/flyer/naerrisches_strassentreiben_2026.png')" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2 cursor-pointer">
                             <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
                             <span class="font-bold">Vergrößern</span>
                         </a>
                     </div>
                     <p class="text-center font-bold mt-3 text-gray-700">Straßentreiben</p>
                 </div>
+
                  <!-- Flyer 4 -->
                  <div class="min-w-[280px] md:min-w-[320px] snap-center">
                     <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
                         <img src="../images/flyer/schmudoparty_im_narrennest_2026.png" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
-                        <a href="../images/flyer/schmudoparty_im_narrennest_2026.png" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                        <!-- UPDATE: Onclick Event hinzugefügt -->
+                        <a href="#" onclick="openModal(event, '../images/flyer/schmudoparty_im_narrennest_2026.png')" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2 cursor-pointer">
                             <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
                             <span class="font-bold">Vergrößern</span>
                         </a>
@@ -208,12 +224,79 @@
     <!-- ================= FOOTER (Wird geladen) ================= -->
     <div id="footer-placeholder"></div>
 
+
+    <!-- ================= NEU: POP UP MODAL (LIGHTBOX) ================= -->
+    <!-- Dieser Bereich ist standardmäßig unsichtbar (hidden) -->
+    <div id="flyer-modal" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeModal()">
+        
+        <!-- Schließen Button -->
+        <button class="absolute top-4 right-4 text-white hover:text-clubaccent transition text-4xl font-bold cursor-pointer z-50">
+            &times;
+        </button>
+
+        <!-- Container für das Bild -->
+        <div class="relative max-w-5xl w-full max-h-screen flex items-center justify-center" onclick="event.stopPropagation()"> 
+            <!-- onclick="event.stopPropagation()" verhindert, dass ein Klick auf das Bild das Modal schließt -->
+            
+            <img id="modal-img" src="" alt="Vergrößerter Flyer" 
+                 class="max-h-[90vh] w-auto rounded-lg shadow-2xl object-contain"
+                 onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=1200'">
+        </div>
+    </div>
+
+
     <!-- Script -->
     <script>
         // Sagt dem Script, dass wir in einem Unterordner sind
         window.basePath = '../'; 
     </script>
     <script src="../js/main.js"></script>
+
+    <!-- NEU: Script für das Pop Up -->
+    <script>
+        function openModal(event, imageSrc) {
+            // Verhindert, dass der Link normal öffnet
+            event.preventDefault();
+            
+            // Holt sich die Elemente
+            const modal = document.getElementById('flyer-modal');
+            const modalImg = document.getElementById('modal-img');
+
+            // Setzt das Bild
+            // Da du Bilder mit Unsplash-Fallback verwendest, checken wir hier nicht, 
+            // ob das lokale Bild existiert. Der img onerror im Modal fängt das ab.
+            modalImg.src = imageSrc;
+
+            // Zeigt das Modal
+            modal.classList.remove('hidden');
+            
+            // Deaktiviert Scrollen im Hintergrund
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('flyer-modal');
+            const modalImg = document.getElementById('modal-img');
+
+            // Versteckt das Modal
+            modal.classList.add('hidden');
+            
+            // Leert die Source nach kurzer Zeit (verhindert Flackern beim nächsten Öffnen)
+            setTimeout(() => {
+                modalImg.src = '';
+            }, 200);
+
+            // Aktiviert Scrollen wieder
+            document.body.style.overflow = 'auto';
+        }
+
+        // Optional: Schließen mit ESC-Taste
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 
 </html>
