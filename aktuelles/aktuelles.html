@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktuelles | GroKaGe Malsch</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        club: '#0E3CA0', 
+                        clubdark: '#0a2a70',
+                        clubaccent: '#FF8C00',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Dein Style (relative Pfade beachten!) -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- ================= HEADER (Wird geladen) ================= -->
+    <div id="header-placeholder"></div>
+
+    <!-- ================= HERO BEREICH ================= -->
+    <section class="pt-40 pb-20 bg-clubdark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+             <img src="../images/hintergrund.png" class="w-full h-full object-cover grayscale">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-clubdark via-clubdark/90 to-gray-50"></div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-4 uppercase tracking-tight">Aktuelles & News</h1>
+            <div class="w-24 h-1 bg-clubaccent mx-auto rounded-full mb-6"></div>
+            <p class="text-blue-100 max-w-2xl mx-auto text-lg font-light">
+                Was gibt es Neues im Vereinsleben? Hier erfährst du alles über vergangene Veranstaltungen, anstehende Termine und wichtige Bekanntmachungen.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= HIGHLIGHT STORY (Die wichtigste News) ================= -->
+    <section class="-mt-16 pb-16 relative z-20">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 flex flex-col lg:flex-row group">
+                <!-- Bild -->
+                <div class="lg:w-1/2 relative overflow-hidden h-80 lg:h-auto">
+                    <img src="../images/flyer/prunksitzungen_2026.png" 
+                         onerror="this.src='https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=1200&auto=format&fit=crop'"
+                         class="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-clubaccent text-white font-bold py-1 px-3 rounded-full text-xs uppercase tracking-wider shadow-lg">
+                        Top News
+                    </div>
+                </div>
+                <!-- Text -->
+                <div class="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                        <i class="fa-regular fa-calendar"></i> 15. Nov 2025
+                        <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                        <span class="text-club font-bold">Vorverkauf</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 leading-tight group-hover:text-club transition">
+                        Der Kartenvorverkauf für die Kampagne 2026 ist gestartet!
+                    </h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Sichert euch jetzt die besten Plätze für unsere Prunksitzungen im Bürgerhaus. Die Nachfrage ist groß, also wartet nicht zu lange. Wir haben ein grandioses Programm für euch vorbereitet!
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-club text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-clubdark hover:-translate-y-1 transition flex items-center gap-2">
+                            Tickets bestellen <i class="fa-solid fa-ticket"></i>
+                        </a>
+                        <a href="#" class="text-gray-500 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition">
+                            Saalplan ansehen
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FLYER GALERIE ================= -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between mb-10">
+                <h3 class="text-2xl font-black text-club uppercase">Aktuelle Flyer</h3>
+                <div class="hidden md:block h-px bg-gray-200 flex-1 ml-6"></div>
+            </div>
+
+            <!-- Horizontale Scroll-Zone für Flyer -->
+            <div class="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
+                
+                <!-- Flyer 1 -->
+                <div class="min-w-[280px] md:min-w-[320px] snap-center">
+                    <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
+                        <img src="../images/flyer/narrenfahrplan_25_26.jpg" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
+                        <!-- Overlay -->
+                        <a href="../images/flyer/narrenfahrplan_25_26.jpg" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                            <span class="font-bold">Vergrößern</span>
+                        </a>
+                    </div>
+                    <p class="text-center font-bold mt-3 text-gray-700">Narrenfahrplan</p>
+                </div>
+
+                <!-- Flyer 2 -->
+                <div class="min-w-[280px] md:min-w-[320px] snap-center">
+                    <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
+                        <img src="../images/flyer/kinderfasching_2026.png" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
+                        <a href="../images/flyer/kinderfasching_2026.png" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                            <span class="font-bold">Vergrößern</span>
+                        </a>
+                    </div>
+                    <p class="text-center font-bold mt-3 text-gray-700">Kinderfasching</p>
+                </div>
+
+                <!-- Flyer 3 -->
+                <div class="min-w-[280px] md:min-w-[320px] snap-center">
+                    <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
+                        <img src="../images/flyer/naerrisches_strassentreiben_2026.png" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
+                        <a href="../images/flyer/naerrisches_strassentreiben_2026.png" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                            <span class="font-bold">Vergrößern</span>
+                        </a>
+                    </div>
+                    <p class="text-center font-bold mt-3 text-gray-700">Straßentreiben</p>
+                </div>
+                 <!-- Flyer 4 -->
+                 <div class="min-w-[280px] md:min-w-[320px] snap-center">
+                    <div class="aspect-[1414/1999] rounded-2xl overflow-hidden shadow-lg border border-gray-100 group relative">
+                        <img src="../images/flyer/schmudoparty_im_narrennest_2026.png" onerror="this.src='https://images.unsplash.com/photo-1549615553-6a9787d5b839?q=80&w=600'" class="w-full h-full object-cover">
+                        <a href="../images/flyer/schmudoparty_im_narrennest_2026.png" target="_blank" class="absolute inset-0 bg-club/80 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white flex-col gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus text-3xl"></i>
+                            <span class="font-bold">Vergrößern</span>
+                        </a>
+                    </div>
+                    <p class="text-center font-bold mt-3 text-gray-700">Schmudo Party</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WEITERE NEUIGKEITEN (Grid) ================= -->
+    <section class="py-16 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <h3 class="text-2xl font-black text-club uppercase mb-8">Aus dem Vereinsleben</h3>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- News 1 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1514525253440-b393452e2347?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-md text-xs font-bold text-gray-800">20. Okt</div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-club transition">Rückblick: Ordensball</h4>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Was für ein Abend! Ein dreifach donnerndes Helau auf unsere Geehrten. Hier gibt es die Bildergalerie und den Bericht zum Abend.</p>
+                        <a href="#" class="text-clubaccent font-bold text-sm hover:underline">Weiterlesen &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 2 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-md text-xs font-bold text-gray-800">12. Okt</div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-club transition">Arbeitseinsatz Narrennest</h4>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Vielen Dank an alle fleißigen Helfer! Wir haben das Lager aufgeräumt, gestrichen und alles für die kommende Kampagne vorbereitet.</p>
+                        <a href="#" class="text-clubaccent font-bold text-sm hover:underline">Weiterlesen &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- News 3 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow hover:shadow-xl transition group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1469488865564-c2de10f69f96?q=80&w=800" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-md text-xs font-bold text-gray-800">01. Okt</div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl mb-2 text-gray-800 group-hover:text-club transition">Neue Trainingszeiten</h4>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Achtung, für die Jugendgarde ändern sich ab sofort die Trainingszeiten am Mittwoch. Bitte beachtet den neuen Plan.</p>
+                        <a href="#" class="text-clubaccent font-bold text-sm hover:underline">Weiterlesen &rarr;</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border-2 border-club text-club px-8 py-3 rounded-full font-bold hover:bg-club hover:text-white transition">
+                    Ältere Beiträge laden
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER (Wird geladen) ================= -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script -->
+    <script>
+        // Sagt dem Script, dass wir in einem Unterordner sind
+        window.basePath = '../'; 
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
